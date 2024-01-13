@@ -1,4 +1,5 @@
 import sqlalchemy.exc
+<<<<<<< HEAD
 from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -34,6 +35,9 @@ class Admin(Base):
     password = Column(String, nullable=False)
     account_type = Column(String, nullable=False)
     school = Column(String, nullable=False)
+=======
+from .exceptions import UserAlreadyExists
+>>>>>>> cc91f6ba693e623081c1577c4daa79b635ef5145
 
 class db_handler:
     @staticmethod
