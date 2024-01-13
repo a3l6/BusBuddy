@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-from flask import Flask, request, jsonify
-from dotenv import load_dotenv
-import os
-import db_handler
-from exceptions import UserAlreadyExists, IncorrectCredentials
-=======
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import os
-from .db_handler import db_handler
-from .exceptions import UserAlreadyExists
->>>>>>> cc91f6ba693e623081c1577c4daa79b635ef5145
+from db_handler import db_handler
+from exceptions import UserAlreadyExists, IncorrectCredentials
 
 # Blueprint imports
-from .blueprints.pages import pages as pages_blueprint
+from blueprints.pages import pages as pages_blueprint
 
 load_dotenv()
 
