@@ -1,6 +1,6 @@
 import sqlalchemy
 import sqlalchemy.exc
-from exceptions import UserAlreadyExists
+from .exceptions import UserAlreadyExists
 
 class db_handler:
     @staticmethod

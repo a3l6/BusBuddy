@@ -1,16 +1,20 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import os
-import db_handler
-from exceptions import UserAlreadyExists
+from .db_handler import db_handler
+from .exceptions import UserAlreadyExists
 
+# Blueprint imports
+from .blueprints.pages import pages as pages_blueprint
 
 load_dotenv()
 
-dh = db_handler.db_handler()
+dh = db_handler()
 
 
 app = Flask(__name__)
+
+app.register_blueprint(pages_blueprint)
 
 # Register Errors
 @app.errorhandler(UserAlreadyExists)
