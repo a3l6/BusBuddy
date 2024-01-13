@@ -1,8 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 import db_handler
-from exceptions import UserAlreadyExists
+from exceptions import UserAlreadyExists, IncorrectCredentials
 
 
 load_dotenv()
@@ -14,7 +14,13 @@ app = Flask(__name__)
 
 # Register Errors
 @app.errorhandler(UserAlreadyExists)
-def handle_invalid_usage(error):
+def handle_user_exists(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+@app.errorhandler(IncorrectCredentials)
+def handle_incorrect_credentials(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
@@ -31,21 +37,42 @@ def register():
     email = request.form.get("email")
     password = request.form.get("password")
     address = request.form.get("address")
+    school = request.form.get("school")
 
-    dh.register(email, password, address)
+    dh.register(name, email, password, address, school)
 
-    return f"{email,name,password,address=}"
+    return f"{email,name,password,address,school=}"
 
-@app.route("/admin/register")
+@app.route("/admin/register", methods=["POST"])
 def admin_register():
     name = request.form.get("name")
     email = request.form.get("email")
     password = request.form.get("password")
-    address = request.form.get("address")
+    school = request.form.get("school")
 
-    dh.register(email, password, address)
-
+    dh.admin_register(name, email, password, school)
     return "Registered?"
+
+@app.route("/admin/login", methods=["POST"])
+def admin_login():
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+
+    verified = dh.admin_login(email, password)
+
+    return verified
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+
+    verified = dh.login(email, password)
+
+    return verified
 
 
 if __name__ == "__main__":
