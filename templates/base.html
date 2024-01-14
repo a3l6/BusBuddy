@@ -20,19 +20,14 @@
 </head>
 
 <body>
-    <!-- Header Contents -->
-    <header>
-    </header>
-
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 
     <!-- Footer Contents -->
     <footer>
     </footer>
 
     <!-- Insert local scripts here, if necessary -->
+    <script src="../static/js/base.js"></script>
     {% block scripts %}{% endblock %}
 
     <!-- Vendor Scripts (Bootstrap 5 with Popper) -->

@@ -1,0 +1,118 @@
+/* auth_base.css - shared resources/styles across all authentication pages */
+
+/**
+ * ========
+ * Variables
+ * ========
+**/
+
+:root {
+    /* Main Colours */
+
+    /* Font Families/Presets */
+    --main-font-family: "Roboto";
+    --btn-font-family: "Inter";
+
+
+    color: #232323;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    letter-spacing: -0.96px;
+
+    --auth-top-font: normal 600 24px / 110% var(--btn-font-family);
+
+    --hero-heading-font: normal 500 50px / 66px var(--main-font-family);
+    --hero-body-font: normal 400 18px / 30px var(--main-font-family);
+    /* ^ Might be temporary, depending on if we get logo image */
+
+    /* Box Shadows + Outlines */
+    --btn-dark-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(103, 110, 118, 0.24), 0px 2px 5px 0px rgba(103, 110, 118, 0.08);
+    --btn-light-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(0, 0, 0, 0.64), 0px 2px 5px 0px rgba(103, 110, 118, 0.08);
+
+    /* Animations & Transitions */
+    --transition-ease: all 0.5s ease;
+    --transition-navbar: all 0.25s ease;
+}
+
+/**
+ * ========
+ * Element Styling
+ * ========
+**/
+
+main {
+    width: 100vw;
+    height: 100vh;
+}
+
+.page-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* background-color: rgba(255, 0, 0, 0.1); */
+    gap: 0;
+}
+
+.page-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+    width: 591px;
+    height: 100vh;
+    padding: 32px;
+}
+
+.content-top {
+    position: relative;
+    flex: 0 1 auto;
+    display: flex;
+    width: 527px;
+    height: fit-content;
+    justify-content: start;
+}
+
+.content-top img {
+    position: absolute;
+    width: 245px;
+    height: 203px;
+    top: -50px;
+    left: -60px;
+    transform: scale(80%);
+}
+
+.content-top span {
+    width: fit-content;
+    height: fit-content;
+    padding-left: 80px;
+
+    color: #232323;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font: var(--auth-top-font);
+    letter-spacing: -0.96px;
+}
+
+.content-main {
+    flex: 1 1 auto;
+    width: 527px;
+    height: auto;
+    /* outline: 1px black solid; */
+    align-self: center;
+}
+
+.page-image {
+    width: fit-content;
+    height: 100%;
+    padding: 12px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.page-image img {
+    height: 100%;
+    width: auto;
+}

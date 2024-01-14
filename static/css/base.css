@@ -1,0 +1,93 @@
+/* base.css - shared resources/styles across all pages */
+
+/**
+ * ========
+ * Imported Fonts
+ * ========
+**/
+
+/* Roboto font - Light */
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-LightItalic.ttf");
+    font-style: italic;
+}
+
+/* Roboto font - Normal */
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Italic.ttf");
+    font-style: italic;
+}
+
+/* Roboto font - Medium */
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-MediumItalic.ttf");
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Roboto font - Bold */
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-BoldItalic.ttf");
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* Roboto font - Black */
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-Black.ttf");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../vendor/fonts/Roboto/Roboto-BlackItalic.ttf");
+    font-style: italic;
+    font-weight: 900;
+}
+
+/* Inter font (for buttons) - Normal */
+@font-face {
+    font-family: "Inter";
+    src: url("../vendor/fonts/Inter/Inter-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../vendor/fonts/Inter/Inter-Medium.ttf");
+    font-weight: 500;
+}
+
+/* Inter font (for buttons) - SemiBold */
+@font-face {
+    font-family: "Inter";
+    src: url("../vendor/fonts/Inter/Inter-SemiBold.ttf");
+    font-weight: 600;
+}
