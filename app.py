@@ -53,6 +53,14 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
+        try: 
+            if session["active"]:
+                if session["type"] == "admin":
+                    return redirect(url_for("admin_maps"))
+                if session["type"] == "student":
+                    return redirect(url_for("student_maps"))
+        except:
+            pass
         return render_template("register_student.html")
     if request.method == "POST":
         name = request.form.get("name")
@@ -81,6 +89,14 @@ def register():
 @app.route("/admin/register", methods=["GET", "POST"])
 def admin_register():
     if request.method == "GET":
+        try: 
+            if session["active"]:
+                if session["type"] == "admin":
+                    return redirect(url_for("admin_maps"))
+                if session["type"] == "student":
+                    return redirect(url_for("student_maps"))
+        except:
+            pass
         return render_template("register_admin.html")
     else:
         name = request.form.get("name")
@@ -107,12 +123,21 @@ def admin_register():
         session["email"] = email
         session["school"] = school
         session["type"] = "admin"
+        session["active"] = True
         return render_template("register_admin.html")
 
 # Combine login and admin login into one
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
+        try: 
+            if session["active"]:
+                if session["type"] == "admin":
+                    return redirect(url_for("admin_maps"))
+                if session["type"] == "student":
+                    return redirect(url_for("student_maps"))
+        except:
+            pass
         return render_template("login.html")
     if request.method == "POST":
         email = request.form.get("email")
@@ -137,6 +162,7 @@ def login():
             session["email"] = email
             session["school"] = dh.get_admin_school(email)
             session["type"] = "admin"
+            session["active"] = True
             return redirect(url_for("admin_maps"))
         
         # Logged in as student; return student map page
@@ -147,6 +173,7 @@ def login():
             session["school"] = dh.get_school(email)
             session["address"] = dh.get_address(email)
             session["type"] = "student"
+            session["active"] = True
             return redirect(url_for("student_maps"))
         
         # WIP: Redirect to login page, implement boolean var pass/flash error message
@@ -329,6 +356,10 @@ def generate_maps():
 
             driver.quit()
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     routes = []
