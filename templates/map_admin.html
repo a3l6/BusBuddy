@@ -66,7 +66,7 @@
 
                 <ul class="route-list">
                     <li class="route-item route-dropdown" id="route-1" >
-                        <button class="route-name">
+                        <button class="route-name" data-filename="route1">
                             <div class="route-name-inner">
                                 <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
                                 <div class="route-name-text">
@@ -100,7 +100,7 @@
                     </li>
 
                     <li class="route-item route-dropdown" id="route-2">
-                        <button class="route-name">
+                        <button class="route-name" data-filename="route2">
                             <div class="route-name-inner">
                                 <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
                                 <div class="route-name-text">
@@ -134,7 +134,7 @@
                     </li>
 
                     <li class="route-item route-dropdown" id="route-3">
-                        <button class="route-name">
+                        <button class="route-name" data-filename="route3">
                             <div class="route-name-inner">
                                 <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
                                 <div class="route-name-text">
@@ -181,6 +181,7 @@
 <script>
     // HTML DOM Elements
     const tabDropdown = document.querySelectorAll(".route-dropdown > button");
+    const backgroundMap = document.querySelector(".map-image img");
 
     /**
      * This function is called whenever a parent tab with dropdown contents is clicked, causing
@@ -194,6 +195,11 @@
         // console.log(otherTabDropdowns)
 
         this.classList.toggle("menu-open");
+        backgroundMap.style.opacity = "0";
+        backgroundMap.src = `../static/vendor/maps/${this.dataset.filename}.png`;
+        backgroundMap.style.transition = "opacity 1s ease";
+        backgroundMap.style.opacity = "1";
+        
 
         otherTabDropdowns.forEach((tab) => {
             tab.classList.remove("menu-open");
@@ -214,35 +220,14 @@
             subMenu.style.paddingBottom = "0px";
             subMenuArrow.style.transform = "scaleY(1)";
         }
-    }
 
-    function getBG() {
-        let sessionInfo = document.getElementById("sessionInfo")
-
-        console.log(sessionInfo.email)
-
-        return sessionInfo // temp
-
-        // return new Promise(async (resolve, reject) => {
-        //     fetch(`/get-map/session.`) // add query of filename to url
-        //         .then((response) => {
-        //             // let output = JSON.parse(response);
-        //             notes = response.text();
-        //             console.log("Processing notes...");
-
-        //             resolve(notes);
-        //             // return response.json()
-        //         })
-        //         .catch((err) => {
-        //             console.log("Error in fetching notes: " + err);
-        //             reject(err);
-        //         })
-        // })
+        setTimeout(() => {
+            backgroundMap.style.transition = "none";
+        }, 1000)
     }
 
     function main() {
         window.addEventListener("DOMContentLoaded", () => {
-            outputInfo = getBG();
             toggleDropdown.call(tabDropdown[0])
         })
 

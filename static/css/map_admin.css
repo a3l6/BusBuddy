@@ -118,6 +118,8 @@ ul.route-list {
     z-index: -1;
     width: 100%;
     height: auto;
+    transition: none;
+    opacity: 0;
 }
 
 /**

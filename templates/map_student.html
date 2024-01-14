@@ -116,6 +116,39 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    const backgroundMap = document.querySelector(".map-image");
 
+    function getBG() {
+        let sessionInfo = document.getElementById("sessionInfo").innerText;
+        console.log(sessionInfo)
+
+        return sessionInfo // temp
+
+        // return new Promise(async (resolve, reject) => {
+        //     fetch(`/get-map/session.`) // add query of filename to url
+        //         .then((response) => {
+        //             // let output = JSON.parse(response);
+        //             notes = response.text();
+        //             console.log("Processing notes...");
+
+        //             resolve(notes);
+        //             // return response.json()
+        //         })
+        //         .catch((err) => {
+        //             console.log("Error in fetching notes: " + err);
+        //             reject(err);
+        //         })
+        // })
+    }
+
+    function main() {
+        window.addEventListener("DOMContentLoaded", () => {
+            print(getBG())
+        })
+    }
+
+    main();    
+</script>
 <script src="../static/js/map_student.js"></script>
 {% endblock %}
