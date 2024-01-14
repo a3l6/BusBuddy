@@ -7,7 +7,7 @@ from assistant import Assistant
 import route_handler as rh
 
 # Blueprint imports
-from blueprints.pages import pages as pages_blueprint
+#from blueprints.pages import pages as pages_blueprint
 
 load_dotenv()
 
@@ -35,7 +35,7 @@ def handle_incorrect_credentials(error):
 
 @app.route("/")
 def home():
-    return os.getenv("PASSWORD")
+    return render_template("index.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
