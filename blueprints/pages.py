@@ -10,9 +10,14 @@ def index():
 def login():
     return render_template("login.html")
 
-@pages.route("/register")
-def register():
-    return render_template("register.html")
+@pages.route("/register-admin")
+def registerAdmin():
+    return render_template("register_admin.html")
+
+@pages.route("/register-student")
+def registerStudent():
+    return render_template("register_student.html")
+
 
 
 
