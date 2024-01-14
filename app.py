@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import os
 from db_handler import db_handler
 from exceptions import UserAlreadyExists, IncorrectCredentials
+from assistant import Assistant
+import route_handler as rh
 
 # Blueprint imports
 from blueprints.pages import pages as pages_blueprint
@@ -10,11 +12,11 @@ from blueprints.pages import pages as pages_blueprint
 load_dotenv()
 
 dh = db_handler()
-
+assistant = Assistant()
 
 app = Flask(__name__)
 
-app.register_blueprint(pages_blueprint)
+#app.register_blueprint(pages_blueprint)
 
 # Register Errors
 @app.errorhandler(UserAlreadyExists)
@@ -77,6 +79,36 @@ def login():
     verified = dh.login(email, password)
 
     return verified
+
+@app.route("/get_route/<school>")
+def get_route(school: str):
+    return school
+
+
+@app.route("/ask-ai/", methods=["GET"])
+def ask():
+    message = request.args["msg"]
+
+
+    return assistant.query(message)
+
+
+@app.route("/get-route-links")
+def get_route_links():
+
+    routes = rh.get_routes()
+
+    urls = []
+
+    for l in routes:
+        url = "https://www.google.com/maps/dir/"
+        for address in l:
+            temp = address.replace(" ", "+") + "/"
+            url += temp
+        urls.append(url)
+
+    #[[(long, lat), (long, lat)], [(long, lat)]]
+    return urls
 
 
 if __name__ == "__main__":
