@@ -80,6 +80,7 @@ class db_handler:
     def login(email: str, password: str):
         try:
             cursor = session.query(User).filter(User.email == email)
+            session.rollback()
             for user in cursor:
                 print(user.password, str(user.password))
                 if ph.verify(user.password, password, email):
@@ -123,7 +124,8 @@ class db_handler:
             print("No user found")
             raise IncorrectCredentials("Incorrect Credentials")
 
-    def get_admin_name(email):
+    @staticmethod
+    def get_admin_name(email: str):
         try:
             cursor = session.query(Admin).filter(Admin.email == email)
             for user in cursor:
@@ -133,6 +135,7 @@ class db_handler:
             print("No user found")
             raise IncorrectCredentials("Incorrect Credentials")
 
+    @staticmethod
     def get_admin_school(email: str):
         try:
             cursor = session.query(Admin).filter(Admin.email == email)
