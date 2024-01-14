@@ -1,5 +1,5 @@
 {% extends "auth_base.html" %}
-{% block title %}BusBuddy - Register{% endblock %}
+{% block title %}BusBuddy - Register as a Student{% endblock %}
 
 <!-- Local stylesheets for this page -->
 {% block authStyling %}
@@ -8,61 +8,89 @@
 
 <!-- Main page content -->
 {% block authContent %}
-    <div class="login-wrapper">
-        <div id="login-text" class="login-text">
-            <span class="login-text-title">Sign In</span>
-            <span class="login-text-subtitle">Please login to continue to your account.</span>
-        </div>
-    
-        <div id="login-body" class="login-body">
-            <form class="login-form" id="login-form" action="/login" method="post">
-                <div id="error-msg">
-                    {#  
-                        {% with errors = get_flashed_messages(category_filter=["login_error"]) %}
-                            {% if errors %}
-                                {% for error in errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}  
-                    #}
-                </div>
-    
-                <div class="login-label" id="label-email"></div>
-                <input class="login-form-text" type="text" name="email" id="login-form-user" placeholder="Email">        
-                <div class="login-error" id="err-email"></div>
-    
-                <div class="login-label" id="label-pass"></div>
-                <input class="login-form-text" type="password" name="password" id="login-form-pwd" placeholder="Password">
-                <div class="login-error" id="err-pass"></div>
+<div class="register-wrapper">
+    <div id="register-text" class="register-text">
+        <span class="register-text-title">Sign up as a student</span>
+        <span class="register-text-subtitle">Register your student account with Bus Buddy.</span>
+    </div>
 
-                <span class="login-remember">
-                    <input id="form-remember" type="checkbox" name="remember">
-                    <label id="lbl-remember" for="remember">Keep me logged in</label>
-                </span>
-    
-                <button class="login-form-btn btn-text" id="login-submit" type="submit" disabled>Sign in</button>
-            </form>
-    
-            <div class="login-form-alt">
-                <img src="../static/vendor/images/auth/or.png" alt="" srcset="">
-                <button class="login-form-btn btn-text" id="login-google" >
+    <div id="register-body" class="register-body">
+        <form class="register-form" id="register-form" action="/register" method="post">
+            <div id="error-msg">
+                {#
+                    {% with errors = get_flashed_messages(category_filter=["register_error"]) %}
+                        {% if errors %}
+                            {% for error in errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                #}
+            </div>
+
+            <div class="register-label" id="label-name"></div>
+            <input class="register-form-text" type="text" name="name" id="register-form-user" placeholder="Name">
+            <div class="register-error" id="err-name"></div>
+
+            <div class="register-label" id="label-school"></div>
+            <input class="register-form-text" type="text" name="school" id="register-form-user" placeholder="School">
+            <div class="register-error" id="err-school"></div>
+
+            <div class="register-label" id="label-date"></div>
+            <input class="register-form-text register-form-date" type="text" name="date_of_birth" id="register-form-dob" placeholder="Date of Birth" />
+            <div class="register-error" id="err-date"></div>
+
+            <div class="register-label" id="label-email"></div>
+            <input class="register-form-text" type="text" name="email" id="register-form-user" placeholder="Email">
+            <div class="register-error" id="err-email"></div>
+
+            <div class="register-label" id="label-pass"></div>
+            <input class="register-form-text" type="password" name="password" id="register-form-pwd"
+                placeholder="Password">
+            <div class="register-error" id="err-pass"></div>
+
+            <button class="register-form-btn btn-text" id="register-submit" type="submit">Sign in</button>
+        </form>
+
+        <div class="register-form-alt">
+            <img src="../static/vendor/images/auth/or.png" alt="" srcset="">
+
+            <a href="">
+                <button class="register-form-btn btn-text" id="register-google">
                     <span>Sign in with Google</span>
                     <img src="../static/vendor/images/auth/Google.svg" alt="">
                 </button>
-            </div>
-        </div>
-    
-    
-    
-        <div class="login-extras" id="">
-            <span>
-                Need an account? <a href="">I'm a Student</a> or <a href="">I'm an Admin</a>
-            </span>
+            </a>
         </div>
     </div>
+
+    <div class="register-extras" id="">
+        <span class="extras-login">
+            Already have an account? <a href="/login">Sign in</a>
+        </span>
+        <span class="extras-register-student">
+            Not a student? <a href="/register-admin">I'm an Admin</a>
+        </span>
+    </div>
+</div>
 {% endblock %}
 
 {% block authScripts %}
+<script>
+    const inputDoB = document.getElementById("register-form-dob");
+
+    inputDoB.addEventListener("focus", function () {
+        this.type = "date";
+        this.placeholder = "Date of Birth";
+    });
+
+    inputDoB.addEventListener("blur", function () {
+        if (!this.value) {
+            this.type = "text";
+            this.placeholder = "Date of Birth";
+        }
+    });
+</script>
+
 <script src="../static/js/register_student.js"></script>
 {% endblock %}
