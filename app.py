@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, send_file, session
+from flask import Flask, request, jsonify, render_template, send_file, session, redirect, url_for
 from dotenv import load_dotenv
 import os
 from db_handler import db_handler, IncorrectCredentials, UserAlreadyExists
@@ -100,11 +100,6 @@ def admin_register():
 
         # After registering, return to login page if successful or return to register if user already exists
         if registerSuccess and (not checkStudentAcc):
-            session["name"] = name
-            session["email"] = email
-            session["school"] = school
-            session["address"] = dh.get_address(email)
-            session["type"] = "student"
             return render_template("login.html")
         
         # WIP: implement boolean var pass/flash error message
@@ -137,12 +132,21 @@ def login():
         # Logged in as admin; return admin map page
         if verifiedAdmin and (not verifiedStudent):
             print("Test 1")
+            session["name"] = dh.get_admin_name(email)
+            session["email"] = email
+            session["school"] = dh.get_admin_school(email)
+            session["type"] = "admin"
             return render_template("map_admin.html") 
         
         # Logged in as student; return student map page
         if (not verifiedAdmin) and verifiedStudent:
             print("Test 2")
-            return render_template("map_student.html")
+            session["name"] = dh.get_name(email)
+            session["email"] = email
+            session["school"] = dh.get_school(email)
+            session["address"] = dh.get_address(email)
+            session["type"] = "student"
+            return redirect(url_for("student_maps"))
         
         # WIP: Redirect to login page, implement boolean var pass/flash error message
         return render_template("login.html")
