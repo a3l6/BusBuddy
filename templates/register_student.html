@@ -1,9 +1,9 @@
 {% extends "auth_base.html" %}
-{% block title %}BusBuddy - Login{% endblock %}
+{% block title %}BusBuddy - Register{% endblock %}
 
 <!-- Local stylesheets for this page -->
 {% block authStyling %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register_student.css') }}">
 {% endblock %}
 
 <!-- Main page content -->
@@ -64,5 +64,5 @@
 {% endblock %}
 
 {% block authScripts %}
-<script src="../static/js/login.js"></script>
+<script src="../static/js/register_student.js"></script>
 {% endblock %}

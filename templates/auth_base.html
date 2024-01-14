@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Auth Base{% endblock %}
+
+<!-- Include styling here -->
+{% block styling %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_base.css') }}">
+
+    {% block authStyling %}{% endblock %}
+{% endblock %}
+
+<!-- Main page content -->
+{% block content %}
+<main>
+    <div class="page-wrapper">
+        <div class="page-content">
+            <div class="content-top">
+                <img src="../static/vendor/images/general/logo.png" alt="" srcset="">
+                <span>BusBuddy</span>
+            </div>
+
+            <div class="content-main">
+                {% block authContent %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="page-image">
+            <img src="../static/vendor/images/auth/authImage.png" alt="">
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="../static/js/auth_base.js"></script>
+    {% block authScripts %}{% endblock %}
+{% endblock %}
