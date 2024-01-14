@@ -46,6 +46,10 @@ body {
     /* height: 10000px; */
 }
 
+#sessionInfo {
+    display: none;
+}
+
 .page-btn {
     display: inline-flex;
     width: 189px;
@@ -195,12 +199,20 @@ ul.content-main-left {
     margin-left: auto; 
     margin-right: auto; 
     width: fit-content;
+    max-height: 100px;
+}
+
+#header-logo-img {
+    position: absolute;
+    top: -127.5%;
+    transform: scale(60%);
 }
 
 #header-logo-text {
     font: var(--nav-logo-font);
     color: var(--Colour-Logo-Primary, #37447E);
     font-feature-settings: 'clig' off, 'liga' off;
+    margin-left: 110px;
 }
 
 /*  */

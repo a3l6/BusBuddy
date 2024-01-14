@@ -181,6 +181,7 @@ def get_route_links():
 
 @app.route("/on-load/<address>")
 def get_map(address):
+    global routes
     loc = GoogleV3(api_key=os.getenv("GOOGLE_MAPS_KEY"))
 
     route = Digraphs.adress_to_route(address)
@@ -200,7 +201,7 @@ def get_map(address):
     for addr in lists:
         url += addr + "/"
 
-    print(f"{routes,url=}")
+    # print(f"{routes,url=}")
     idx = routes.index(url)
 
     # get weather
