@@ -54,6 +54,10 @@
     color: #9A9A9A;
 }
 
+.login-form-alt a {
+    text-decoration: none;
+}
+
 /**
  * ========
  * Input Form Styling
@@ -129,12 +133,24 @@
 
 .login-form-text::placeholder {
     vertical-align: middle;
-    color: var(--textbox-text-pl-clr);
-    font: var(--body-font);
+    color: #9A9A9A;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
     letter-spacing: normal;
 }
 
 #login-form-pwd::placeholder {
+    color: #9A9A9A;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
     padding-bottom: 10px;
 }
 
