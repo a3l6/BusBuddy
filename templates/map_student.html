@@ -123,32 +123,31 @@
 <script>
     const backgroundMap = document.querySelector(".map-image");
 
-    function getBG() {
+    function getLinks() {
         let sessionAddress = document.getElementById("sessionInfo").innerText;
         // return 0;
 
         return new Promise(async (resolve, reject) => {
-            fetch(`/on-load/${sessionAddress}`) // add query of filename to url
+            fetch("/get-all-maps") // add query of filename to url
                 .then((response) => {
-                    // let output = JSON.parse(response);
-                    notes = response.text();
-                    console.log("Processing notes...");
-                    console.log(notes)
+                    let output = JSON.parse(response);
+                    console.log("Processing links...");
+                    console.log(output)
 
-                    resolve(notes);
+                    resolve(output);
                     // return response.json()
                 })
                 .catch((err) => {
-                    console.log("Error in fetching notes: " + err);
+                    console.log("Error in fetching map links: " + err);
                     reject(err);
                 })
         })
     }
 
     function main() {
-        // window.addEventListener("DOMContentLoaded", () => {
-        //     console.log(getBG())
-        // })
+        window.addEventListener("DOMContentLoaded", () => {
+            console.log(getLinks())
+        })
     }
 
     main();    
