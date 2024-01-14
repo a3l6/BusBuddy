@@ -132,11 +132,12 @@ def login():
         # Logged in as admin; return admin map page
         if verifiedAdmin and (not verifiedStudent):
             print("Test 1")
+            print(email)
             session["name"] = dh.get_admin_name(email)
             session["email"] = email
             session["school"] = dh.get_admin_school(email)
             session["type"] = "admin"
-            return render_template("map_admin.html") 
+            return redirect(url_for("admin_maps"))
         
         # Logged in as student; return student map page
         if (not verifiedAdmin) and verifiedStudent:
