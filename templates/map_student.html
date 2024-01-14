@@ -54,6 +54,7 @@
     </header>
 
     <body>
+        <div id="sessionInfo">{{ session["address"] }}</div>
 
         <div class="map-image">
             <img src="../static/vendor/images/maps/mapSampleBG.png" alt="">
@@ -120,31 +121,30 @@
     const backgroundMap = document.querySelector(".map-image");
 
     function getBG() {
-        let sessionInfo = document.getElementById("sessionInfo").innerText;
-        console.log(sessionInfo)
+        let sessionAddress = document.getElementById("sessionInfo").innerText;
+        // return 0;
 
-        return sessionInfo // temp
+        return new Promise(async (resolve, reject) => {
+            fetch(`/on-load/${sessionAddress}`) // add query of filename to url
+                .then((response) => {
+                    // let output = JSON.parse(response);
+                    notes = response.text();
+                    console.log("Processing notes...");
+                    console.log(notes)
 
-        // return new Promise(async (resolve, reject) => {
-        //     fetch(`/get-map/session.`) // add query of filename to url
-        //         .then((response) => {
-        //             // let output = JSON.parse(response);
-        //             notes = response.text();
-        //             console.log("Processing notes...");
-
-        //             resolve(notes);
-        //             // return response.json()
-        //         })
-        //         .catch((err) => {
-        //             console.log("Error in fetching notes: " + err);
-        //             reject(err);
-        //         })
-        // })
+                    resolve(notes);
+                    // return response.json()
+                })
+                .catch((err) => {
+                    console.log("Error in fetching notes: " + err);
+                    reject(err);
+                })
+        })
     }
 
     function main() {
         window.addEventListener("DOMContentLoaded", () => {
-            print(getBG())
+            console.log(getBG())
         })
     }
 
