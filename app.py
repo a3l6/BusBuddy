@@ -21,6 +21,7 @@ load_dotenv()
 dh = db_handler()
 assistant = Assistant()
 
+generated_routes = False
 app = Flask(__name__)
 
 #app.register_blueprint(pages_blueprint)
@@ -177,5 +178,41 @@ def get_map():
         driver.quit()
     return send_file("map.png", mimetype="image/png")
 
+
+def generate_routes():
+    global routes
+    r = rh.get_routes()
+    routes = r
+
+def generate_maps():
+    global routes
+
+    for route in routes:
+        with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) as driver: 
+            driver.get(route)
+            # Scroll down till the end
+            driver.find_element(By.CSS_SELECTOR, ".yra0jd").click()
+            specific_element = driver.find_element(By.CSS_SELECTOR, "canvas.aFsglc:nth-child(1)")
+            actions = ActionChains(driver)
+            actions.move_to_element(specific_element).perform()
+            # Take a screenshot of just the located element and save it to a file
+            driver.implicitly_wait(.6)
+            specific_element.screenshot(f'static/vendor/maps/route{routes.index(route) + 1}.png')
+        
+        
+            # Close the browser
+
+            driver.quit()
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    routes = []
+
+    # generate routes
+    if not generated_routes:
+        generate_routes()
+        generate_maps()
+
+        generated_routes = True
+
+    app.run()
