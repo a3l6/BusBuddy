@@ -15,7 +15,7 @@
         </div>
     
         <div id="register-body" class="register-body">
-            <form class="register-form" id="register-form" action="/register" method="post">
+            <form class="register-form" id="register-form" action="/admin/register" method="post">
                 <div id="error-msg">
                     {#  
                         {% with errors = get_flashed_messages(category_filter=["register_error"]) %}

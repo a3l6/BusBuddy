@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session
 from dotenv import load_dotenv
 import os
-from db_handler import db_handler
+from db_handler import db_handler, IncorrectCredentials, UserAlreadyExists
 from exceptions import UserAlreadyExists, IncorrectCredentials
 from assistant import Assistant
 import route_handler as rh
@@ -48,9 +48,22 @@ def register():
         address = request.form.get("address")
         school = request.form.get("school")
 
-        dh.register(name, email, password, address, school)
+        try:
+            registerSuccess = dh.register(name, email, password, address, school)
+        except UserAlreadyExists:
+            registerSuccess = False
 
-        return f"{email,name,password,address,school=}"
+        try:
+            checkAdminAcc = dh.admin_login(email, password)
+        except IncorrectCredentials:
+            checkAdminAcc = False
+
+        # After registering, return to login page if successful or return to register if user already exists
+        if registerSuccess and (not checkAdminAcc):
+            return render_template("login.html")
+        
+        # WIP: implement boolean var pass/flash error message
+        return render_template("register_student.html")
 
 @app.route("/admin/register", methods=["GET", "POST"])
 def admin_register():
@@ -62,18 +75,22 @@ def admin_register():
         password = request.form.get("password")
         school = request.form.get("school")
 
-        dh.admin_register(name, email, password, school)
-        return "Registered?"
+        try:
+            registerSuccess = dh.admin_register(name, email, password, school)
+        except UserAlreadyExists:
+            registerSuccess = False
 
-@app.route("/admin/login", methods=["POST"])
-def admin_login():
-    email = request.form.get("email")
-    password = request.form.get("password")
+        try:
+            checkStudentAcc = dh.login(email, password)
+        except IncorrectCredentials:
+            checkStudentAcc = False
 
-
-    verified = dh.admin_login(email, password)
-
-    return verified
+        # After registering, return to login page if successful or return to register if user already exists
+        if registerSuccess and (not checkStudentAcc):
+            return render_template("login.html")
+        
+        # WIP: implement boolean var pass/flash error message
+        return render_template("register_admin.html")
 
 # Combine login and admin login into one
 @app.route("/login", methods=["GET", "POST"])
@@ -84,10 +101,37 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
+        # When logging in, check if admin or student; only at most one bool here can be true
+        try:
+            verifiedAdmin = dh.admin_login(email, password)
+        except IncorrectCredentials:
+            verifiedAdmin = False
 
-        verified = dh.login(email, password)
+        try:
+            verifiedStudent = dh.login(email, password)
+        except IncorrectCredentials:
+            verifiedStudent = False
 
-        return verified
+        # Logged in as admin; return admin map page
+        if verifiedAdmin and (not verifiedStudent):
+            print("Test 1")
+            return render_template("map_admin.html") 
+        
+        # Logged in as student; return student map page
+        if (not verifiedAdmin) and verifiedStudent:
+            print("Test 2")
+            return render_template("map_student.html")
+        
+        # WIP: Redirect to login page, implement boolean var pass/flash error message
+        return render_template("login.html")
+
+@app.route("/admin/map_routes")
+def admin_maps():
+    return render_template("map_admin.html")
+
+@app.route("/map_routes")
+def student_maps():
+    return render_template("map_student.html")
 
 @app.route("/get_route/<school>")
 def get_route(school: str):

@@ -46,7 +46,7 @@ class db_handler:
             session.commit()
         except sqlalchemy.exc.IntegrityError:
             raise UserAlreadyExists("User already exists!", status_code=422)
-        return "User Added Successfully"
+        return True   # "User Added Successfully"
 
     @staticmethod
     def admin_register(name: str, email: str, password: str, school: str):
@@ -59,7 +59,7 @@ class db_handler:
         except sqlalchemy.exc.IntegrityError as e:
             print(e)
             raise UserAlreadyExists("User already exists!", status_code=422)
-        return "User Added Successfully"
+        return True   # "User Added Successfully"
 
     @staticmethod
     def admin_login(email: str, password: str):
@@ -68,7 +68,7 @@ class db_handler:
             for user in cursor:
                 print(user.password, str(user.password))
                 if ph.verify(user.password, password, email):
-                    return "Successfully authenticated"
+                    return True   # "Successfully authenticated"
                 raise IncorrectCredentials("Incorrect Credentials")
             raise IncorrectCredentials("Incorrect Credentials")
         except UnboundLocalError:       # No user found
@@ -83,7 +83,7 @@ class db_handler:
             for user in cursor:
                 print(user.password, str(user.password))
                 if ph.verify(user.password, password, email):
-                    return "Successfully authenticated"
+                    return True   # "Successfully authenticated"
                 raise IncorrectCredentials("Incorrect Credentials")
             raise IncorrectCredentials("Incorrect Credentials")
         except UnboundLocalError:       # No user found

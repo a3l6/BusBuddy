@@ -1,0 +1,65 @@
+<!-- Student view of their bus route for a particular school. -->
+
+{% extends "base.html" %}
+{% block title %}BusBuddy - Student Bus Overview{% endblock %}
+
+<!-- Local stylesheets for this page -->
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map_student.css') }}">
+{% endblock %}
+
+<!-- Main page content -->
+{% block content %}
+<main>
+    <!-- Header -->
+    <header id="header" class="header page fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <div class="header-content">
+                <!-- Actual header navigation items -->
+                <!-- <div id="header-content" class="text-bg-light" tabindex="-1"> -->
+                <ul class="content-main-left navbar-nav">
+                    <a href="">
+                        <li id="main-profile" class="main-link navbar-item">Profile</li>
+                    </a>
+                    <a href="">
+                        <li id="main-route" class="main-link navbar-item">Route</li>
+                    </a>
+                    <a href="">
+                        <li id="main-help" class="main-link navbar-item">Help</li>
+                    </a>
+                </ul>
+
+                <!-- Header logo -->
+                <div class="content-logo">
+                    <a class="navbar-brand" href="">
+                        <!-- <img id="header-logo-img" src="" alt="" /> -->
+                        <span id="header-logo-text">BusBuddy</span>
+                    </a>
+                </div>
+                
+                <!-- Header profile -->
+                <div class="content-main-right" id="">
+                    <!-- <button id="school-btn" class="page-btn page-btn-dark" id="">
+                        <span>For Schools</span>
+                        <img class="page-btn-arrow" src="../static/vendor/images/buttons/arrow-right-light.svg" alt="">
+                    </button> -->
+
+                    <!-- Put profile image here -->
+                    <img src="" alt="">
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <body>
+        Map Student Page TODO
+    </body>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="../static/js/map_student.js"></script>
+{% endblock %}
