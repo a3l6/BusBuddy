@@ -1,24 +1,22 @@
-from selenium import webdriver 
-from selenium.webdriver.chrome.service import Service as ChromeService 
-from webdriver_manager.chrome import ChromeDriverManager 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
- 
-url = "https://scrapeme.live/shop/" 
- 
-options = webdriver.ChromeOptions() #newly added 
+import python_weather
 
+import asyncio
+import os
 
-with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver: 
-    driver.get('https://www.google.com/maps/dir/899+Nebo+Rd,+Hannon,+ON+L0R+1P0,+Canada/91+Osler+Dr,+Hamilton,+ON+L9H+4H4,+Canada/700+Main+St+W,+Hamilton,+ON+L8S+1A5,+Canada/')
-	# Scroll down till the end
-    driver.find_element(By.CSS_SELECTOR, ".yra0jd").click()
-    specific_element = driver.find_element(By.CSS_SELECTOR, "canvas.aFsglc:nth-child(1)")
-    actions = ActionChains(driver)
-    actions.move_to_element(specific_element).perform()
-    # Take a screenshot of just the located element and save it to a file
-    specific_element.screenshot('selenium-dynamic-element.png')
- 
- 
-    # Close the browser
-    driver.quit()
+async def getweather():
+  # declare the client. the measuring unit used defaults to the metric system (celcius, km/h, etc.)
+  async with python_weather.Client(unit=python_weather.METRIC) as client:
+    # fetch a weather forecast from a city
+    weather = await client.get('Hamilton')
+    
+    # returns the current day's forecast temperature (int)
+    print(weather.current.temperature)
+    print(weather.current.description)
+
+if __name__ == '__main__':
+  # see https://stackoverflow.com/questions/45600579/asyncio-event-loop-is-closed-when-getting-loop
+  # for more details
+  if os.name == 'nt':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+  
+  asyncio.run(getweather())
