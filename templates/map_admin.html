@@ -46,7 +46,7 @@
                     </button> -->
 
                     <!-- Put profile image here -->
-                    <img src="../static/vendor/images/maps/profileStudent.png" alt="">
+                    <img src="../static/vendor/images/maps/profileAdmin.png" alt="">
                 </div>
             </div>
 
@@ -54,6 +54,7 @@
     </header>
 
     <body>
+        <div id="sessionInfo">{{ session }}</div>
 
         <div class="map-image">
             <img src="../static/vendor/images/maps/mapSampleBG.png" alt="">
@@ -215,8 +216,35 @@
         }
     }
 
+    function getBG() {
+        let sessionInfo = document.getElementById("sessionInfo")
+
+        console.log(sessionInfo.email)
+
+        return sessionInfo // temp
+
+        // return new Promise(async (resolve, reject) => {
+        //     fetch(`/get-map/session.`) // add query of filename to url
+        //         .then((response) => {
+        //             // let output = JSON.parse(response);
+        //             notes = response.text();
+        //             console.log("Processing notes...");
+
+        //             resolve(notes);
+        //             // return response.json()
+        //         })
+        //         .catch((err) => {
+        //             console.log("Error in fetching notes: " + err);
+        //             reject(err);
+        //         })
+        // })
+    }
+
     function main() {
-        console.log(tabDropdown)
+        window.addEventListener("DOMContentLoaded", () => {
+            outputInfo = getBG()
+        })
+
         tabDropdown.forEach((tab) => {
             tab.addEventListener("click", toggleDropdown);
         });

@@ -45,6 +45,9 @@ body {
     /* height: 10000px; */
 }
 
+#sessionInfo {
+    display: none;
+}
 
 ul.route-list {
     margin-left: 0;
