@@ -1,10 +1,17 @@
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template, send_file
 from dotenv import load_dotenv
 import os
 from db_handler import db_handler, IncorrectCredentials, UserAlreadyExists
 from exceptions import UserAlreadyExists, IncorrectCredentials
 from assistant import Assistant
 import route_handler as rh
+from selenium import webdriver 
+from selenium.webdriver.chrome.service import Service as ChromeService 
+from webdriver_manager.chrome import ChromeDriverManager 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+
+
 
 # Blueprint imports
 #from blueprints.pages import pages as pages_blueprint
@@ -150,19 +157,25 @@ def ask():
 def get_route_links():
 
     routes = rh.get_routes()
+    return routes
 
-    urls = []
-
-    for l in routes:
-        url = "https://www.google.com/maps/dir/"
-        for address in l:
-            temp = address.replace(" ", "+") + "/"
-            url += temp
-        urls.append(url)
-
-    #[[(long, lat), (long, lat)], [(long, lat)]]
-    return urls
-
+@app.route("/get-map")
+def get_map():
+    with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) as driver: 
+        driver.get('https://www.google.com/maps/dir/899+Nebo+Rd,+Hannon,+ON+L0R+1P0,+Canada/91+Osler+Dr,+Hamilton,+ON+L9H+4H4,+Canada/700+Main+St+W,+Hamilton,+ON+L8S+1A5,+Canada/')
+        # Scroll down till the end
+        driver.find_element(By.CSS_SELECTOR, ".yra0jd").click()
+        specific_element = driver.find_element(By.CSS_SELECTOR, "canvas.aFsglc:nth-child(1)")
+        actions = ActionChains(driver)
+        actions.move_to_element(specific_element).perform()
+        # Take a screenshot of just the located element and save it to a file
+        driver.implicitly_wait(.6)
+        specific_element.screenshot('map.png')
+    
+    
+        # Close the browser
+        driver.quit()
+    return send_file("map.png", mimetype="image/png")
 
 if __name__ == "__main__":
     app.run(debug=True)

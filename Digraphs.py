@@ -1,3 +1,5 @@
+
+import unittest
 from graph2  import Digraph, Node, WeightedEdge
 import copy
 import numpy
@@ -5,6 +7,7 @@ from Create_Clusters import get_coords_from_adress
 import Create_Clusters
 
 def main():
+
     def coord_distance(one, two):
         one = one.split(",")
         two = two.split(",")
@@ -37,8 +40,8 @@ def main():
         newnode3 = Mit_Digraph.get_end()
         Mit_Digraph.add_node(Node(str(newnode3[0])+','+str(newnode3[1])))
         newnode3 = Node(str(newnode3[0])+','+str(newnode3[1]))
-        new_edges = [WeightedEdge(newnode3, Node(x), 3000, float(coord_distance(newnode3.get_name(), x))/40) for x in keylist]
-        new_edges.extend([WeightedEdge(Node(x), newnode3, int(address_dictionary[x]), float(coord_distance(x, newnode3.get_name()))/40) for x in get_others(list(keylist), count)])
+        
+        new_edges = [WeightedEdge(Node(x), newnode3, 3000, float(coord_distance(x, newnode3.get_name()))/40) for x in keylist]
         
         for new_edge in new_edges:
                 Mit_Digraph.add_edge(new_edge)
@@ -55,6 +58,7 @@ def main():
             return path
         for edges in digraph.get_edges_for_node(start):
             if edges.get_destination() not in path[0]:
+                #print(edges.get_destination())
                 if path[3] + edges.get_total_time() <= max_time:
                     temp_path = copy.deepcopy(path)
                     try:
@@ -63,28 +67,42 @@ def main():
                         temp_path[1] += edges.get_houses()/1/len(path)
                     temp_path[2] += 1
                     temp_path[3] += edges.get_total_time()
-                    if best_HTN == None or temp_path[1]>best_HTN and temp_path[2] in (number_of_stations/number_of_busses-1,  number_of_stations/number_of_busses,  number_of_stations/number_of_busses+1):
+                   # print(temp_path[1])
+                    if best_HTN == None or temp_path[1]>best_HTN and temp_path[2] in ((number_of_stations//number_of_busses)-1,  number_of_stations//number_of_busses,  (number_of_stations//number_of_busses)+1):
                         new_path = get_best_path(digraph, edges.get_destination(), end, max_time, number_of_stations, number_of_busses, temp_path, best_HTN, best_path)
                         if new_path != None:
                             best_path = copy.deepcopy(new_path)
                             best_HTN = new_path[1]
-
         return best_path
 
     Clusters_object = Create_Clusters.run()
     busstopppps = Clusters_object.bustops
+    #print("HIIIII")
+    #print(busstopppps)
     lol = load_map(Clusters_object.bustops)
     newnode2 = lol.get_start()
     newmode3 = lol.get_end()
-    busnum = 5
+    busnum = 3
     THELAWRDLYROUTES = []
     for bus in range(busnum):
         hi = get_best_path(lol, Node(str(newnode2[0])+','+str(newnode2[1])), Node(str(newmode3[0])+','+str(newmode3[1])), 40, number_of_busses= busnum-bus, number_of_stations=len(busstopppps.keys())+2)
+       # print(hi)
+        #print("hi")
         THELAWRDLYROUTES.append([x.tupleit() for x in hi[0]])
         for thing in hi[0]:
             if thing.get_name() in busstopppps:
                 busstopppps.pop(thing.get_name())
+            #print(busstopppps)
+        lol = load_map(busstopppps)
+        #print("hiiii")
+        #print(lol)
 
-
+    #print(THELAWRDLYROUTES)
+    for count, x in enumerate(THELAWRDLYROUTES):
+        if count>0:
+            for x in range(count):
+                if THELAWRDLYROUTES[count][0] == ('43.1692276', '-79.84532779999999'):
+                    THELAWRDLYROUTES[count].pop(0)
     return THELAWRDLYROUTES
-        
+    #43.2631153, -79.8705335
+    #(43.2599949, -79.9011659)
