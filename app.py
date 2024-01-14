@@ -361,6 +361,11 @@ def logout():
     session.clear()
     return redirect(url_for("home"))
 
+@app.route("/get-all-maps")
+def get_all_maps():
+    return routes
+
+
 if __name__ == "__main__":
     routes = []
 
