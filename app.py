@@ -363,7 +363,7 @@ def logout():
 
 @app.route("/get-all-maps")
 def get_all_maps():
-    return {"routes": routes}
+    return jsonify({"routes": routes})
 
 
 if __name__ == "__main__":
@@ -377,3 +377,5 @@ if __name__ == "__main__":
         generated_routes = True
 
     app.run()
+
+generate_routes()
