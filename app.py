@@ -363,7 +363,7 @@ def logout():
 
 @app.route("/get-all-maps")
 def get_all_maps():
-    return routes
+    return {"routes": routes}
 
 
 if __name__ == "__main__":
