@@ -200,6 +200,7 @@ def get_map(address):
     for addr in lists:
         url += addr + "/"
 
+    print(f"{routes,url=}")
     idx = routes.index(url)
 
     # get weather
@@ -221,7 +222,6 @@ def get_map(address):
 @app.route("/generate-fake-data")
 def generate_fake_data():
     addresses = [
-    "93, Brian, Boulevard, Brian Boulevard, Flamborough, City of Hamilton, Ontario, Canada, L8B 0C8",
     "248, Pinehill, Drive, Pinehill Drive, Glanbrook, City of Hamilton, Ontario, Canada, L0R 1P0",
     "117, Marion, Street, Marion Street, Glanbrook, City of Hamilton, Ontario, Canada, L0R 1W0",
     "30, Fair, Street, Fair Street, Ancaster, City of Hamilton, Ontario, Canada, L9K 0A6",
