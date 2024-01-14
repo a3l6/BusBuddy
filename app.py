@@ -37,17 +37,20 @@ def handle_incorrect_credentials(error):
 def home():
     return os.getenv("PASSWORD")
 
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    name = request.form.get("name")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    address = request.form.get("address")
-    school = request.form.get("school")
+    if request.method == "GET":
+        return render_template("")
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        address = request.form.get("address")
+        school = request.form.get("school")
 
-    dh.register(name, email, password, address, school)
+        dh.register(name, email, password, address, school)
 
-    return f"{email,name,password,address,school=}"
+        return f"{email,name,password,address,school=}"
 
 @app.route("/admin/register", methods=["POST"])
 def admin_register():
@@ -70,15 +73,18 @@ def admin_login():
     return verified
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    email = request.form.get("email")
-    password = request.form.get("password")
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
 
 
-    verified = dh.login(email, password)
+        verified = dh.login(email, password)
 
-    return verified
+        return verified
 
 @app.route("/get_route/<school>")
 def get_route(school: str):

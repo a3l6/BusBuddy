@@ -70,18 +70,25 @@ print("Longitude = ", getLoc.longitude)"""
 """list4 = list(map(get_geocode_obj, list1))
 print(list4)"""
 
+import Digraphs
+
+x = Digraphs.main()
+print(x)
+
+lists = []
+
+for i in x:
+    lists.append(list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), i)))))
+
+#list4 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list1))))
+#list5 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list2))))
+#list6 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list3))))
 
 
-
-list4 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list1))))
-list5 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list2))))
-list6 = list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), list3))))
-
-
-x = list4, list5, list6
+#x = list4, list5, list6
 
 urls = []
-for l in x:
+for l in lists:
     url = "https://www.google.com/maps/dir/"
     for addr in l:
         url += addr + "/"
