@@ -21,7 +21,6 @@ def get_routes() -> list[str]:
     lists = []
 
     for i in x:
-        print(i)
         lists.append(list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), i)))))
 
 
