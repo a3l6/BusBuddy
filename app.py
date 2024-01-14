@@ -181,6 +181,7 @@ def get_route_links():
 
 @app.route("/on-load/<address>")
 def get_map(address):
+    global route
     loc = GoogleV3(api_key=os.getenv("GOOGLE_MAPS_KEY"))
 
     route = Digraphs.adress_to_route(address)
