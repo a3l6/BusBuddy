@@ -146,6 +146,14 @@ class db_handler:
             print("No user found")
             raise IncorrectCredentials("Incorrect Credentials")
 
+    @staticmethod
+    def get_addrs():
+        cursor = session.query(User.address)
+        addrs = []
+        for addr in cursor:
+            addrs.append(addr)
+        return addrs
+
 # Sqlalchemy boilerplate
 # Generating sqlalchemy stuff
 engine = create_engine(os.getenv("DB_URL"))
