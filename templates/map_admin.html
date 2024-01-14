@@ -1,11 +1,11 @@
-<!-- Admin view of bus routes for a particular school. -->
+<!-- Student view of their bus route for a particular school. -->
 
 {% extends "base.html" %}
-{% block title %}BusBuddy - Admin Bus Overview{% endblock %}
+{% block title %}BusBuddy - Student Bus Overview{% endblock %}
 
 <!-- Local stylesheets for this page -->
 {% block styling %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/map_admin.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map_student.css') }}">
 {% endblock %}
 
 <!-- Main page content -->
@@ -37,7 +37,7 @@
                         <span id="header-logo-text">BusBuddy</span>
                     </a>
                 </div>
-
+                
                 <!-- Header profile -->
                 <div class="content-main-right" id="">
                     <!-- <button id="school-btn" class="page-btn page-btn-dark" id="">
@@ -46,7 +46,7 @@
                     </button> -->
 
                     <!-- Put profile image here -->
-                    <img src="" alt="">
+                    <img src="../static/vendor/images/maps/profileStudent.png" alt="">
                 </div>
             </div>
 
@@ -54,14 +54,51 @@
     </header>
 
     <body>
-        <div class="route-wrapper">
-            
+
+        <div class="map-image">
+            <img src="../static/vendor/images/maps/mapSampleBG.png" alt="">
         </div>
+        
+        <div class="route-container-outer">
+            <span class="route-title">Updates</span>
+            <div class="route-container-inner">
+                <div class="route-wrapper">
+                    <div class="route-name">
+                        <img src="../static/vendor/images/maps/busIcon.png" alt="">
+                        <div class="route-name-text">
+                            <span class="route-name-title">Your Route</span>
+                            <span class="route-name-subtitle">Early - Departing from Stop 5</span>
+                        </div>
+                    </div>
+
+                    <div class="route-stops">
+                        <div class="route-visual">
+                            <div class="visual-circle" id="visual-circle-1"></div>
+                            <div class="visual-circle" id="visual-circle-2"></div>
+                            <div class="visual-circle" id="visual-circle-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="route-time">
+                        <span>Bus estimated arrival: 7:36 AM</span>
+                        <span>Destination estimated arrival: 7:58 AM</span>
+                    </div>
+
+                    <div class="route-btn">
+                        <button class="route-btn-track">Track Location</button>
+                        <button class="route-btn-cancel">Cancel Your Stop</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <img class="ui-container" src="../static/vendor/images/maps/UIIcons.png" alt="">
     </body>
 </main>
 
 {% endblock %}
 
 {% block scripts %}
-<script src="../static/js/map_admin.js"></script>
+<script src="../static/js/map_student.js"></script>
 {% endblock %}

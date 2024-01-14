@@ -46,7 +46,7 @@
                     </button> -->
 
                     <!-- Put profile image here -->
-                    <img src="" alt="">
+                    <img src="../static/vendor/images/maps/profileStudent.png" alt="">
                 </div>
             </div>
 
@@ -54,14 +54,71 @@
     </header>
 
     <body>
-        <div class="route-wrapper">
-            
+
+        <div class="map-image">
+            <img src="../static/vendor/images/maps/mapSampleBG.png" alt="">
         </div>
+        
+        <div class="route-container-outer">
+            <span class="route-title">Updates</span>
+            <div class="route-container-inner">
+                <div class="route-wrapper">
+                    <div class="route-name">
+                        <img src="../static/vendor/images/maps/busIcon.png" alt="">
+                        <div class="route-name-text">
+                            <span class="route-name-title">Your Route</span>
+                            <span class="route-name-subtitle">Early - Departing from Stop 5</span>
+                        </div>
+                    </div>
+
+                    <div class="route-stops">
+                        <div class="route-visual">
+                            <div class="visual-circle" id="visual-circle-1"></div>
+                            <div class="visual-circle" id="visual-circle-2"></div>
+                            <div class="visual-circle" id="visual-circle-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="route-time">
+                        <span>Bus estimated arrival: 7:36 AM</span>
+                        <span>Destination estimated arrival: 7:58 AM</span>
+                    </div>
+
+                    <div class="route-btn">
+                        <button class="route-btn-track">Track Location</button>
+                        <button class="route-btn-cancel">Cancel Your Stop</button>
+                    </div>
+
+                </div>
+
+                <div class="route-weather">
+                    <img src="../static/vendor/images/maps/weatherIcon.png" alt="">
+                    <div class="route-weather-text">
+                        <span class="route-weather-title">Your Route</span>
+                        <span class="route-weather-subtitle">Early - Departing from Stop 5</span>
+                    </div>
+                </div>
+
+                <div class="route-status">
+                    <img src="../static/vendor/images/maps/updateIcon.png" alt="">
+                    <div class="route-status-text">
+                        <span class="route-status-title">Your Route</span>
+                        <span class="route-status-subtitle">Early - Departing from Stop 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="ui-container" src="../static/vendor/images/maps/UIIcons.png" alt="">
     </body>
 </main>
 
 {% endblock %}
 
 {% block scripts %}
+<script>
+    
+</script>
+
 <script src="../static/js/map_student.js"></script>
 {% endblock %}
