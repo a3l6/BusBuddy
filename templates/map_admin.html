@@ -242,7 +242,8 @@
 
     function main() {
         window.addEventListener("DOMContentLoaded", () => {
-            outputInfo = getBG()
+            outputInfo = getBG();
+            toggleDropdown.call(tabDropdown[0])
         })
 
         tabDropdown.forEach((tab) => {
