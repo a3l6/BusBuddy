@@ -52,7 +52,7 @@ def register():
 
         return f"{email,name,password,address,school=}"
 
-@app.route("/admin/register", methods=["POST"])
+@app.route("/admin/register", methods=["GET", "POST"])
 def admin_register():
     name = request.form.get("name")
     email = request.form.get("email")
@@ -72,7 +72,7 @@ def admin_login():
 
     return verified
 
-
+# Combine login and admin login into one
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":

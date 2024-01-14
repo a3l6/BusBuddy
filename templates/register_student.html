@@ -36,9 +36,9 @@
             <input class="register-form-text" type="text" name="school" id="register-form-user" placeholder="School">
             <div class="register-error" id="err-school"></div>
 
-            <div class="register-label" id="label-date"></div>
-            <input class="register-form-text register-form-date" type="text" name="date_of_birth" id="register-form-dob" placeholder="Date of Birth" />
-            <div class="register-error" id="err-date"></div>
+            <div class="register-label" id="label-address"></div>
+            <input class="register-form-text register-form-address" type="text" name="address" id="register-form-address" placeholder="Address" />
+            <div class="register-error" id="err-address"></div>
 
             <div class="register-label" id="label-email"></div>
             <input class="register-form-text" type="text" name="email" id="register-form-user" placeholder="Email">
@@ -77,19 +77,19 @@
 
 {% block authScripts %}
 <script>
-    const inputDoB = document.getElementById("register-form-dob");
+    // const inputDoB = document.getElementById("register-form-dob");
 
-    inputDoB.addEventListener("focus", function () {
-        this.type = "date";
-        this.placeholder = "Date of Birth";
-    });
+    // inputDoB.addEventListener("focus", function () {
+    //     this.type = "date";
+    //     this.placeholder = "Date of Birth";
+    // });
 
-    inputDoB.addEventListener("blur", function () {
-        if (!this.value) {
-            this.type = "text";
-            this.placeholder = "Date of Birth";
-        }
-    });
+    // inputDoB.addEventListener("blur", function () {
+    //     if (!this.value) {
+    //         this.type = "text";
+    //         this.placeholder = "Date of Birth";
+    //     }
+    // });
 </script>
 
 <script src="../static/js/register_student.js"></script>
