@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+{% block title %}Tabs for Educational Module Page{% endblock %}
+
+{% block styling %}
+<style>
+    /* 
+        Note: replace/change only what is specified below, but keep anything CSS-related to the stuff 
+        inside your #main-container div. 
+    */
+
+    /**
+    * ========
+    * Variables (Add these in to your current CSS variables)
+    * ========
+    **/
+
+    :root {
+        /* Main Colours */
+        --tab-module-clr: #5b83eb;
+        --tab-unit-clr: #ff0615;
+        --tab-topic-clr: #14792a;
+        --tab-activity-clr: #fbbc04;
+
+        --tab-title-clr: #000000;
+        --tab-subtitle-clr: rgba(0, 0, 0, 0.50);
+        --tabs-divider-clr: #d4d4d4;
+
+        /* Font Families/Presets */
+        --general-font-family: "JejuGothic", "NanumGothic";
+        --tab-title-font: normal 400 17px / normal var(--general-font-family);
+        --tab-subtitle-font: normal 400 14px / normal var(--general-font-family);
+
+        /* Shadows */
+        --tab-text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+        /* Transitions */
+        --tab-menu-transition: width 0.5s ease;
+        --tab-bg-transition: background-color 0.5s ease;
+        --tab-clr-transition: border-left-width 0.2s ease-out;
+    }
+
+    /**
+    * ========
+    * General (add new attributes into current brackets/replace or overwrite as necessary)
+    * ========
+    **/
+
+    /* Completely overwrite your .content with this one */
+    .content {
+        display: flex;
+        flex-direction: row;
+
+        margin-top: 70px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+    .tabs-wrapper {
+        width: 300px;
+        height: fit-content;
+        margin-right: 25px;
+        transition: var(--tab-menu-transition);
+    }
+
+    /* Note: Completely overwrite your #main-container with this one */
+    #main-container {
+        width: auto;
+        height: fit-content;
+        min-width: 500px;
+        flex-grow: 1;
+        display: flex;
+        background-color: #F9F9F9;
+        margin-left: 15px;
+        position: relative;
+    }
+
+    .tabs-wrapper ul {
+        padding-left: 1.1rem;
+    }
+
+    @media screen and (min-width: 1400px) {
+        .content {
+            width: 1260px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    @media screen and (max-width: 935px) {
+        .content {
+            flex-wrap: wrap;
+        }
+
+        .tabs-wrapper {
+            position: relative;
+            min-width: auto;
+            max-width: auto;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .tabs-wrapper::after {
+            position: absolute;
+            content: "";
+            width: 103%;
+            height: 2px;
+            left: 0;
+            bottom: 0px;
+
+            background-color: var(--tabs-divider-clr);
+        }
+
+        #main-container {
+            padding-top: 30px;
+            min-width: auto;
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+
+    /**
+    * ========
+    * Nav Tabs (insert this & remove any code you have related to previous tab design)
+    * ========
+    **/
+
+    .tab-title {
+        font: var(--tab-title-font);
+        color: var(--tab-title-clr);
+        text-shadow: var(--tab-text-shadow);
+    }
+
+    .tab-subtitle {
+        font: var(--tab-subtitle-font);
+        color: var(--tab-subtitle-clr);
+        text-shadow: var(--tab-text-shadow);
+    }
+
+    .tabs-wrapper button {
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .tabs-unit-menu {
+        border-right: 0.5px #dedddd solid;
+    }
+
+    li.tabs-unit {
+        margin-left: 0;
+    }
+
+    .tabs-module button {
+        position: relative;
+        width: 100%;
+        min-height: 70px;
+        height: fit-content;
+        padding-left: 20px;
+
+        border-left: 10px var(--tab-module-clr) solid;
+        background-color: #f5f5f5;
+        transition: var(--tab-bg-transition);
+    }
+
+    .tabs-module button:hover {
+        background-color: #f0f0f0;
+    }
+
+    .tabs-module button:hover .tab-title {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    ul.tabs-unit-menu {
+        padding-left: 0;
+    }
+
+    .tabs-module button .tab-title,
+    .tabs-unit button .tab-subtitle {
+        margin-bottom: 3px;
+    }
+
+    .tabs-unit-btn,
+    .tabs-topic-btn,
+    .tabs-activity-btn {
+        position: relative;
+    }
+
+    .tabs-module button::before,
+    .tabs-unit-menu li button::before,
+    .tabs-topic-menu li button::before,
+    .tabs-activity-menu li button::before {
+        background-color: #dedddd;
+        position: absolute;
+        content: "";
+        height: 2px;
+        width: 100%;
+        right: 0;
+        top: 0;
+    }
+
+    .tabs-module button::after,
+    .tabs-unit-menu li button::after,
+    .tabs-topic-menu li button::after,
+    .tabs-activity-menu li button::after {
+        background-color: #dedddd;
+        position: absolute;
+        content: "";
+        height: 2px;
+        width: 100%;
+        right: 0;
+        bottom: 0;
+    }
+
+    .tabs-unit {
+        margin-left: 15px;
+    }
+
+    .tabs-unit button {
+        min-height: 65px;
+        height: fit-content;
+        padding-left: 20px;
+        padding-bottom: 7.5px;
+        padding-top: 7.5px;
+        cursor: pointer;
+        transition: var(--tab-bg-transition), var(--tab-clr-transition);
+    }
+
+    .tabs-activity button {
+        min-height: 55px;
+    }
+
+    .tabs-unit button+ul {
+        height: auto;
+        max-height: 0;
+        transition: max-height 0.5s ease;
+        overflow: hidden;
+    }
+
+    .tabs-dropdown>button {
+        border-left: 2px var(--tab-unit-clr) solid;
+    }
+
+    .tabs-topic>button {
+        border-left: 2px var(--tab-topic-clr) solid;
+    }
+
+    .tabs-activity button {
+        border-left: 2px var(--tab-activity-clr) solid;
+    }
+
+    .tabs-unit button:hover {
+        background-color: #f5f5f5;
+        border-left-width: 7px;
+    }
+
+    .tabs-activity>button:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        background-color: #fdf8de;
+    }
+
+    .tabs-unit button.menu-open {
+        background-color: #f0f0f0;
+    }
+
+    .tabs-unit button.menu-open:hover {
+        background-color: #e0e0e0;
+    }
+
+    .tabs-unit button.menu-open,
+    .tabs-unit button.menu-open :hover {
+        border-left-width: 10px;
+    }
+</style>
+{% endblock %}
+
+<!-- Note: Replace placeholder button text with Jinja blocks in the future -->
+{% block content %}
+    <!-- Replace all HTML below over your ".sidebar", feel free to change class/id names if necessary 
+         (keep your .content outer div and #main-container as is, though)
+    -->
+    <div id="lesson-tabs" class="tabs-wrapper">
+
+        <!-- TODO: Implement Jinja to generate a tab structure like below based off the course entry relationships;
+                   currently, the below structure contains sample placeholder modules and lessons -->
+
+        <ul class="tabs-unit-menu">
+            <div class="tabs-module">
+                <button class="tabs-module-btn">
+                    <div class="tab-title">Pre-Algebra</div>
+                    <div class="tab-subtitle">15 MODULES - 179 TOPICS</div>
+                </button>
+            </div>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 1</div>
+                    <div class="tab-title">Factors & Multiples</div>
+                </button>
+
+                <ul class="tabs-topic-menu">
+                    <li class="tabs-topic tabs-dropdown">
+                        <button class="tabs-topic-btn">
+                            <div class="tab-subtitle">TOPIC 1</div>
+                            <div class="tab-title">Factors & Multiples</div>
+                        </button>
+
+                        <ul class="tabs-activity-menu">
+                            <li class="tabs-activity tab-lesson">
+                                <a href="/lessons/0#panel-1">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Lesson</div>
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="tabs-activity tab-quiz">
+                                <a href="/quiz/0">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Quiz</div>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="tabs-topic tabs-dropdown">
+                        <button class="tabs-topic-btn">
+                            <div class="tab-subtitle">TOPIC 2</div>
+                            <div class="tab-title">Prime & Composite Numbers</div>
+                        </button>
+
+                        <ul class="tabs-activity-menu">
+                            <li class="tabs-activity tab-lesson">
+                                <a href="/lessons/0#panel-2">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Lesson</div>
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="tabs-activity tab-quiz">
+                                <a href="/quiz/0">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Quiz</div>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="tabs-topic tabs-dropdown">
+                        <button class="tabs-topic-btn">
+                            <div class="tab-subtitle">TOPIC 3</div>
+                            <div class="tab-title">Prime Factorization</div>
+                        </button>
+
+                        <ul class="tabs-activity-menu">
+                            <li class="tabs-activity tab-lesson">
+                                <a href="/lessons/0#panel-3">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Lesson</div>
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="tabs-activity tab-quiz">
+                                <a href="/quiz/0">
+                                    <button class="tabs-activity-btn">
+                                        <div class="tab-title">Quiz</div>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+            <!-- 
+                These main tabs here currently don't have any subtabs; note that jinja functionality should be added
+                in the future to automatically add in the subtabs for each unit/module
+             -->
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 2</div>
+                    <div class="tab-title">Patterns</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 3</div>
+                    <div class="tab-title">Ratios and Rates</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 4</div>
+                    <div class="tab-title">Percentages</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 5</div>
+                    <div class="tab-title">Exponents Intro & Order of Operations</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 6</div>
+                    <div class="tab-title">Variables & Expressions</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 7</div>
+                    <div class="tab-title">Equations & Inequalities</div>
+                </button>
+            </li>
+
+            <li class="tabs-unit tabs-dropdown">
+                <button class="tabs-unit-btn">
+                    <div class="tab-subtitle">MODULE 8</div>
+                    <div class="tab-title">Proportional Relationships</div>
+                </button>
+            </li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Add contents of this in whatever JS file you have, or add a separate script tag/JS file and put this inside -->
+<script>
+    // HTML DOM Elements
+    const tabDropdown = document.querySelectorAll(".tabs-dropdown > button");
+    const tabActivities = document.querySelectorAll(".tabs-activity a");
+
+    /**
+     * This function is called whenever a tab with dropdown contents is clicked, causing
+     * the element and its parent tab menus (if any) to toggle active classes ("menu-open") and 
+     * increase/decrease in height size accordingly.
+    **/
+    function clickPanel() {
+        let panelBtn = this.querySelector("button");
+
+        tabActivities.forEach((otherTab) => {
+            otherTab.querySelector("button").classList.remove("menu-open");
+        })
+
+        panelBtn.classList.add("menu-open");
+    }
+
+    /**
+     * This function is called whenever a parent tab with dropdown contents is clicked, causing
+     * the element and its parent tab menus (if any) to toggle active classes ("menu-open") and 
+     * increase/decrease in height size accordingly.
+    **/
+    function toggleDropdown() {
+        let subMenu = this.nextElementSibling;
+        let subMenuItems = subMenu.querySelectorAll(":scope>li");
+        let parentMenu = this.closest("ul");
+        let numSubMenuHeight = 0;
+
+        this.classList.toggle("menu-open");
+
+        if (this.classList.contains("menu-open")) {
+            subMenuItems.forEach((item) => {
+                numSubMenuHeight += item.offsetHeight;
+            })
+
+            subMenu.style.maxHeight = `${numSubMenuHeight}px`;
+
+            if (parentMenu != null) {
+                let parentMenuHeight = parentMenu.style.maxHeight;
+                parentMenuHeight = parentMenuHeight.slice(0, -2);
+
+                parentMenu.style.maxHeight = `${parseInt(parentMenuHeight) + numSubMenuHeight}px`
+            }
+        } else {
+            subMenu.style.maxHeight = "0px";
+        }
+    }
+
+    function main() {
+        tabDropdown.forEach((tab) => {
+            tab.addEventListener("click", toggleDropdown);
+        });
+
+        tabActivities.forEach((tab) => {
+            tab.addEventListener("click", clickPanel);
+        });
+    }
+
+    main();
+</script>
+{% endblock %}

@@ -5,7 +5,7 @@
 
 <!-- Local stylesheets for this page -->
 {% block styling %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/map_student.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map_admin.css') }}">
 {% endblock %}
 
 <!-- Main page content -->
@@ -62,34 +62,111 @@
         <div class="route-container-outer">
             <span class="route-title">Updates</span>
             <div class="route-container-inner">
-                <div class="route-wrapper">
-                    <div class="route-name">
-                        <img src="../static/vendor/images/maps/busIcon.png" alt="">
-                        <div class="route-name-text">
-                            <span class="route-name-title">Your Route</span>
-                            <span class="route-name-subtitle">Early - Departing from Stop 5</span>
+
+                <ul class="route-list">
+                    <li class="route-item route-dropdown" id="route-1" >
+                        <button class="route-name">
+                            <div class="route-name-inner">
+                                <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
+                                <div class="route-name-text">
+                                    <span class="route-name-title">Route 1</span>
+                                    <span class="route-name-subtitle">Early - Departing from Stop 1</span>
+                                </div>
+                            </div>
+                            <img class="route-arrow" src="../static/vendor/images/maps/dropdownArrow.svg" alt="">
+                        </button>
+
+                        <div class="route-wrapper">
+                            <div class="route-stops">
+                                <div class="route-visual">
+                                    <div class="visual-circle" id="visual-circle-1"></div>
+                                    <div class="visual-circle" id="visual-circle-2"></div>
+                                    <div class="visual-circle" id="visual-circle-3"></div>
+                                </div>
+                            </div>
+        
+                            <div class="route-time">
+                                <span>Bus estimated arrival: 7:36 AM</span>
+                                <span>Destination estimated arrival: 7:58 AM</span>
+                            </div>
+        
+                            <div class="route-btn">
+                                <button class="route-btn-track">Track Location</button>
+                                <button class="route-btn-cancel">Cancel Your Stop</button>
+                            </div>
+        
                         </div>
-                    </div>
+                    </li>
 
-                    <div class="route-stops">
-                        <div class="route-visual">
-                            <div class="visual-circle" id="visual-circle-1"></div>
-                            <div class="visual-circle" id="visual-circle-2"></div>
-                            <div class="visual-circle" id="visual-circle-3"></div>
+                    <li class="route-item route-dropdown" id="route-2">
+                        <button class="route-name">
+                            <div class="route-name-inner">
+                                <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
+                                <div class="route-name-text">
+                                    <span class="route-name-title">Route 2</span>
+                                    <span class="route-name-subtitle">On Time - Departing from Stop 1</span>
+                                </div>
+                            </div>
+                            <img class="route-arrow" src="../static/vendor/images/maps/dropdownArrow.svg" alt="">
+                        </button>
+
+                        <div class="route-wrapper">
+                            <div class="route-stops">
+                                <div class="route-visual">
+                                    <div class="visual-circle" id="visual-circle-1"></div>
+                                    <div class="visual-circle" id="visual-circle-2"></div>
+                                    <div class="visual-circle" id="visual-circle-3"></div>
+                                </div>
+                            </div>
+        
+                            <div class="route-time">
+                                <span>Bus estimated arrival: 7:36 AM</span>
+                                <span>Destination estimated arrival: 7:58 AM</span>
+                            </div>
+        
+                            <div class="route-btn">
+                                <button class="route-btn-track">Track Location</button>
+                                <button class="route-btn-cancel">Cancel Your Stop</button>
+                            </div>
+        
                         </div>
-                    </div>
+                    </li>
 
-                    <div class="route-time">
-                        <span>Bus estimated arrival: 7:36 AM</span>
-                        <span>Destination estimated arrival: 7:58 AM</span>
-                    </div>
+                    <li class="route-item route-dropdown" id="route-3">
+                        <button class="route-name">
+                            <div class="route-name-inner">
+                                <img class="route-icon" src="../static/vendor/images/maps/busIcon.png" alt="">
+                                <div class="route-name-text">
+                                    <span class="route-name-title">Route 3</span>
+                                    <span class="route-name-subtitle">On Time - Departing from Stop 1</span>
+                                </div>
+                            </div>
+                            <img class="route-arrow" src="../static/vendor/images/maps/dropdownArrow.svg" alt="">
+                        </button>
 
-                    <div class="route-btn">
-                        <button class="route-btn-track">Track Location</button>
-                        <button class="route-btn-cancel">Cancel Your Stop</button>
-                    </div>
+                        <div class="route-wrapper">
+                            <div class="route-stops">
+                                <div class="route-visual">
+                                    <div class="visual-circle" id="visual-circle-1"></div>
+                                    <div class="visual-circle" id="visual-circle-2"></div>
+                                    <div class="visual-circle" id="visual-circle-3"></div>
+                                </div>
+                            </div>
+        
+                            <div class="route-time">
+                                <span>Bus estimated arrival: 7:36 AM</span>
+                                <span>Destination estimated arrival: 7:58 AM</span>
+                            </div>
+        
+                            <div class="route-btn">
+                                <button class="route-btn-track">Track Location</button>
+                                <button class="route-btn-cancel">Cancel Your Stop</button>
+                            </div>
+        
+                        </div>
+                    </li>
+                </ul>
 
-                </div>
             </div>
         </div>
 
@@ -100,5 +177,57 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    // HTML DOM Elements
+    const tabDropdown = document.querySelectorAll(".route-dropdown > button");
+
+    /**
+     * This function is called whenever a parent tab with dropdown contents is clicked, causing
+     * the element and its parent tab menus (if any) to toggle active classes ("menu-open") and 
+     * increase/decrease in height size accordingly.
+    **/
+    function toggleDropdown() {
+        let subMenu = this.nextElementSibling;
+        let subMenuArrow = this.querySelector(".route-arrow");
+        let otherTabDropdowns = Array.from(tabDropdown).filter((elem) => elem != this);
+        // console.log(otherTabDropdowns)
+
+        this.classList.toggle("menu-open");
+
+        otherTabDropdowns.forEach((tab) => {
+            tab.classList.remove("menu-open");
+            let otherSubMenu = tab.nextElementSibling;
+            let otherSubMenuArrow = tab.querySelector(".route-arrow");
+
+            otherSubMenu.style.maxHeight = "0px";
+            otherSubMenu.style.paddingBottom = "0px";
+            otherSubMenuArrow.style.transform = "scaleY(1)";
+        })
+
+        if (this.classList.contains("menu-open")) {
+            subMenu.style.maxHeight = "395px";
+            subMenu.style.paddingBottom = "30px";
+            subMenuArrow.style.transform = "scaleY(-1)";
+        } else {
+            subMenu.style.maxHeight = "0px";
+            subMenu.style.paddingBottom = "0px";
+            subMenuArrow.style.transform = "scaleY(1)";
+        }
+    }
+
+    function main() {
+        console.log(tabDropdown)
+        tabDropdown.forEach((tab) => {
+            tab.addEventListener("click", toggleDropdown);
+        });
+
+        // tabActivities.forEach((tab) => {
+        //     tab.addEventListener("click", clickPanel);
+        // });
+    }
+
+    main();
+</script>
+
 <script src="../static/js/map_student.js"></script>
 {% endblock %}

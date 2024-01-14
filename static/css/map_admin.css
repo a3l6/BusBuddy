@@ -1,5 +1,4 @@
-
-/* map_student.css - contains styling for student view of their map route */
+/* map_admin.css - contains styling for admin view of all map routes */
 
 /**
  * ========
@@ -44,6 +43,12 @@ main {
 
 body {
     /* height: 10000px; */
+}
+
+
+ul.route-list {
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .page-btn {
@@ -208,7 +213,7 @@ ul.content-main-left {
     position: fixed;
     width: fit-content;
     height: fit-content;
-    top: 19px;
+    top: 10px;
     right: 55px;
 }
 
@@ -230,8 +235,6 @@ ul.content-main-left {
  * Route Info Box Styling
  * ========
 **/
-
-/* measurement times 0.806 */
 
 .route-container-outer {
     position: fixed;
@@ -271,25 +274,55 @@ ul.content-main-left {
     background: #FFF;
 }
 
+#route-1 .route-name {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
 .route-wrapper {
     width: 344px;
-    height: 395px;
+    height: auto;  /* height: 395px; */
+    max-height: 0;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 13px;
-    padding-top: 12px;
+    overflow-y: hidden;
+    overflow-x: auto;
 
     border-bottom: 0.3px solid var(--Gray50, #BDBDBD);
+    transition: var(--transition-ease);
 }
 
-.route-name, .route-weather, .route-status {
+.route-name {
+    padding-top: 24px;
+    padding-bottom: 24px;
     display: flex;
-    width: 279px;
+    width: 100%;
     height: fit-content;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 28px;
+    padding-right: 28px;
     vertical-align: middle;
+    justify-content: space-between;
+
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: var(--transition-ease);
 }
 
-.route-name img, .route-weather img, .route-status img {
+.route-name:hover, .route-name:focus-visible {
+    background:rgba(0, 0, 0, 0.1)
+}
+
+.route-name-inner {
+    display: flex;
+    width: fit-content;
+
+}
+
+.route-name img.route-icon {
     width: 24px;
     height: 24px;
 
@@ -297,12 +330,20 @@ ul.content-main-left {
     margin-bottom: auto;
 }
 
-.route-name-text, .route-weather-text, .route-status-text {
+.route-name img.route-arrow {
+    width: 16px;
+    height: 10.5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    transition: var(--transition-ease);
+}
+
+.route-name-text {
     display: grid;
     margin-left: 12.5px;
 }
 
-.route-name-title, .route-weather-title, .route-status-title {
+.route-name-title {
     width: fit-content;
     height: fit-content;
 
@@ -314,7 +355,7 @@ ul.content-main-left {
     line-height: normal;
 }
 
-.route-name-subtitle, .route-weather-subtitle, .route-status-subtitle {
+.route-name-subtitle {
     width: fit-content;
     height: fit-content;
     color: #868782;

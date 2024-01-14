@@ -208,7 +208,7 @@ ul.content-main-left {
     position: fixed;
     width: fit-content;
     height: fit-content;
-    top: 19px;
+    top: 10px;
     right: 55px;
 }
 
@@ -230,8 +230,6 @@ ul.content-main-left {
  * Route Info Box Styling
  * ========
 **/
-
-/* measurement times 0.806 */
 
 .route-container-outer {
     position: fixed;
