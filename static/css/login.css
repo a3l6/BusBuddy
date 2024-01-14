@@ -1,0 +1,271 @@
+/* login.css - contains styling for main landing page of website */
+
+/**
+ * ========
+ * Variables
+ * ========
+**/
+
+:root {
+    /* Main Colours */
+
+    /* Font Families/Presets */
+    --main-font-family: "Roboto";
+    --input-font-family: "Inter";
+    
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+
+    --input-font: normal 400 18px / 150% var(--input-font-family);
+
+    /* Box Shadows + Outlines */
+    --btn-dark-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(103, 110, 118, 0.24), 0px 2px 5px 0px rgba(103, 110, 118, 0.08);
+    --btn-light-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 1px rgba(0, 0, 0, 0.64), 0px 2px 5px 0px rgba(103, 110, 118, 0.08);
+
+    /* Animations & Transitions */
+    --transition-ease: all 0.5s ease;
+    --transition-input: all 0.1s linear;
+    --transition-navbar: all 0.25s ease;
+}
+
+
+/**
+ * ========
+ * General Styling
+ * ========
+**/
+
+.login-wrapper {
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 123px;
+}
+
+#login-form-user {
+    color: #000000;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font: var(--input-font);
+}
+
+#login-form-user::placeholder {
+    color: #9A9A9A;
+}
+
+/**
+ * ========
+ * Input Form Styling
+ * ========
+**/
+
+/* General Login Styling */
+.login-text {
+    display: grid;
+    text-align: start;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+/* Input Field Styling */
+.login-body {
+    padding: 0;
+    margin: 0;
+}
+
+.login-form {
+    gap: 20px;
+}
+
+.login-text-title {
+    color: #232323;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Inter";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; 
+    letter-spacing: -1.6px;
+}
+
+.login-text-subtitle {
+    color: #969696;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+}
+
+/* Login Form Styling */
+#login-form input {
+    border-radius: 10px;   
+}
+
+#login-form:last-child {
+    margin: 0;
+}
+
+.login-form-text {
+    display: flex;
+    width: 399px;  
+    height: 59px; 
+    padding: 16px;
+
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+
+    border: 1px solid #D9D9D9;
+    transition: var(--transition-input);
+}
+
+.login-form-text:focus-visible {
+    border: 2.5px solid #367AFF;
+    outline: none;
+}
+
+.login-form-text::placeholder {
+    vertical-align: middle;
+    color: var(--textbox-text-pl-clr);
+    font: var(--body-font);
+    letter-spacing: normal;
+}
+
+#login-form-pwd::placeholder {
+    padding-bottom: 10px;
+}
+
+.login-form-btn {
+    display: flex;
+    padding: 16px 8px;
+    justify-content: center;
+    align-items: center;
+
+    width: 399px;  
+    height: 54px; 
+    border-radius: 10px;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 21.6px */
+    letter-spacing: -0.18px;
+
+    column-gap: 8px;
+}
+
+.login-form-alt {
+    margin-top: 20px;
+    column-gap: 20px;
+}
+
+#login-submit {
+    color: #FFF;
+    background: #367AFF;
+}
+
+#login-google {
+    color: #232323;
+    border: 1px solid #E6E8E7;
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.03);
+}
+
+/* Remember Me Styling */
+
+.login-remember {
+    display: flex;
+    justify-content: start;
+}
+
+.login-remember label {
+    padding-left: 10px;
+    color: #232323;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+}
+
+/* Login Extras Styling */
+.login-extras {
+    margin-top: 34px;
+}
+
+.login-extras span {
+    color: #6C6C6C;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+}
+
+.login-extras span a {
+    color: #367AFF;
+    text-decoration-line: underline;
+}
+
+/* -- Login Errors Styling -- */
+#error-msg,
+.login-error * {
+    display: none;
+}
+
+.login-error {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin: 0 0 20px 0;   /* 0 0 54px 0 */
+    vertical-align: middle;
+}
+
+input.show-error {
+    border: var(--error-border);
+}
+
+input.show-error:focus-visible {
+    outline: var(--error-border);   
+}
+
+.login-error.show-error {
+    margin: 10px 0 24.6px 0;
+}
+
+.login-error.show-error * {
+    display: block;
+}
+
+.error-img {
+    position: relative;
+}
+
+.error-img img {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    top: -0.5px;
+}
+
+.error-msg {
+    color: var(--error-txt-clr);
+    font: var(--error-font);
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    height: fit-content;
+}
+
+

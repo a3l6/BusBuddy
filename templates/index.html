@@ -1,5 +1,7 @@
+<!-- Main Landing Page for the website. -->
+
 {% extends "base.html" %}
-{% block title %}Lessons - Gamified Learning Platform{% endblock %}
+{% block title %}BusBuddy - Home{% endblock %}
 
 <!-- Local stylesheets for this page -->
 {% block styling %}
@@ -8,9 +10,130 @@
 
 <!-- Main page content -->
 {% block content %}
-<div>
-    Hello World!
-</div>
+<main>
+    <!-- Header -->
+    <header id="header" class="header page fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <div class="header-content">
+                <!-- Actual header navigation items -->
+                <!-- <div id="header-content" class="text-bg-light" tabindex="-1"> -->
+                <ul class="content-main-left navbar-nav">
+                    <a href="">
+                        <li id="main-profile" class="main-link navbar-item">Profile</li>
+                    </a>
+                    <a href="">
+                        <li id="main-route" class="main-link navbar-item">Route</li>
+                    </a>
+                    <a href="">
+                        <li id="main-help" class="main-link navbar-item">Help</li>
+                    </a>
+                </ul>
+                <!-- Header logo -->
+                <div class="content-logo">
+                    <a class="navbar-brand" href="">
+                        <!-- <img id="header-logo-img" src="" alt="" /> -->
+                        <span id="header-logo-text">BusBuddy</span>
+                    </a>
+                </div>
+                <!-- Header "more info" button(s) -->
+                <div class="content-main-right" id="">
+                    <button id="school-btn" class="page-btn page-btn-dark" id="">
+                        <span>For Schools</span>
+                        <!-- NOTE: replace image, since current exported one from Figma is blurry -->
+                        <img class="page-btn-arrow" src="../static/vendor/images/buttons/arrow-right-light.svg" alt="">
+                    </button>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <body>
+        <div class="hero">
+            <div class="hero-image">
+                <img src="../static/vendor/images/landing/heroImage.png" alt="" srcset="">
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-title">Navigating Peace of Mind</div>
+                <div class="hero-body">
+                    <p>
+                        BusBuddy revolutionizes the student experience by offering a seamless 
+                        and secure solution for tracking school buses. Gone are the days of 
+                        uncertainty and worry for students and parents alike.
+                    </p>
+                    <p>
+                        By simplifying the school bus experience, BusBuddy empowers students 
+                        to navigate their educational journey with ease and assurance.
+                    </p>
+                    <p>
+                        BusBuddy: for busybodies.
+                    </p>
+                    
+                </div>
+
+                <div class="hero-btn-row">
+                    <a href="/login">
+                        <button id="login-btn" class="page-btn page-btn-dark" id="">
+                            <span>Log In</span>
+                            <!-- NOTE: replace image, since current exported one from Figma is blurry -->
+                            <img class="page-btn-arrow" src="../static/vendor/images/buttons/arrow-right-light.svg" alt="">
+                        </button>
+                    </a>
+
+
+                    <a href="/register">
+                        <button id="signup-btn" class="page-btn page-btn-light" id="">
+                            <span>Sign Up</span>
+                            <!-- NOTE: replace image, since current exported one from Figma is blurry -->
+                            <img class="page-btn-arrow" src="../static/vendor/images/buttons/arrow-right-dark.svg" alt="">
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="middle-section" id="middle-1">
+            <div class="middle-content">
+
+            </div>
+            
+            <div class="middle-image">
+
+            </div>
+        </div>
+
+        <div class="middle-section" id="middle-2">
+            <div class="middle-content">
+
+            </div>
+
+            <div class="middle-image">
+
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="bottom-text">
+                
+            </div>
+            <div class="bottom-price">
+
+            </div>
+            <div class="bottom-button">
+
+            </div>
+        </div>
+
+    </body>
+
+    <footer>
+
+    </footer>
+</main>
+
 {% endblock %}
 
 {% block scripts %}
