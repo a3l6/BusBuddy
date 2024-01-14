@@ -372,6 +372,3 @@ if __name__ == "__main__":
         generated_routes = True
 
     app.run()
-
-generate_routes()
-generate_maps()
