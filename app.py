@@ -40,7 +40,7 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
-        return render_template("")
+        return render_template("register_student.html")
     if request.method == "POST":
         name = request.form.get("name")
         email = request.form.get("email")
@@ -54,13 +54,16 @@ def register():
 
 @app.route("/admin/register", methods=["GET", "POST"])
 def admin_register():
-    name = request.form.get("name")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    school = request.form.get("school")
+    if request.method == "GET":
+        return render_template("register_admin.html")
+    else:
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        school = request.form.get("school")
 
-    dh.admin_register(name, email, password, school)
-    return "Registered?"
+        dh.admin_register(name, email, password, school)
+        return "Registered?"
 
 @app.route("/admin/login", methods=["POST"])
 def admin_login():
