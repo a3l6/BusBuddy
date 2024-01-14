@@ -89,7 +89,7 @@
 
                     <div class="route-btn">
                         <button class="route-btn-track">Track Location</button>
-                        <button class="route-btn-cancel">Cancel Your Stop</button>
+                        <a href=""><button class="route-btn-cancel">Open in Google Maps</button></a>
                     </div>
 
                 </div>
@@ -146,7 +146,9 @@
 
     function main() {
         window.addEventListener("DOMContentLoaded", () => {
-            console.log(getLinks())
+            let test = getLinks()
+            console.log(test)
+
         })
     }
 
