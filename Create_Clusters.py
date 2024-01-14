@@ -5,9 +5,10 @@ from sklearn import cluster
 import matplotlib.pyplot as plt
 import tqdm
 import random
+from geopy.extra.rate_limiter import RateLimiter
+from geopy.geocoders import GoogleV3
 
-
-
+gmapsclient2 = GoogleV3(api_key='AIzaSyAjCIaky34JZGSKrAJ293MQ8e9NX6egqpg')
 gmaps = googlemaps.Client(key='AIzaSyAjCIaky34JZGSKrAJ293MQ8e9NX6egqpg')
 
 def get_coords_from_adress(adress: str):
@@ -35,21 +36,24 @@ class Adress_clusters():
         
     def find_stop(self):
         coor_cluster = {}
-        cluster_coor = {}
+        self.cluster_coor = {}
         for clusterY in set(self.clusters):
-                cluster_coor[clusterY] = []
+                self.cluster_coor[clusterY] = []
         for count, x in enumerate(self.clusters):
             coor_cluster.update({tuple(self.latlong[count]): x})
-            cluster_coor[x].append(tuple(self.latlong[count]))
+            self.cluster_coor[x].append(tuple(self.latlong[count]))
         self.stopcoords = []
         self.bustops = {}
-        for clus in cluster_coor.values():
+        for clus in self.cluster_coor.values():
             templist = [clus[x][0] for x in range(len(clus))]
             templist2 = [clus[x][1] for x in range(len(clus))]
             try:
                 road = gmaps.nearest_roads(str(numpy.average(templist))+","+str(numpy.average(templist2)))[0]["location"]
             except:
-                road = gmaps.nearest_roads(str(numpy.average(templist)+1)+","+str(numpy.average(templist2)+1))[0]["location"]
+                rev = gmapsclient2.reverse(str(numpy.average(templist))+","+str(numpy.average(templist2)))[0]
+                print(rev)
+                road = gmaps.geocode(rev)[0]["geometry"]["location"]
+                road = {"latitude": road["lat"], "longitude": road["lng"]}
             self.stopcoords.append(road)
             self.bustops[str(road["latitude"])+','+str(road["longitude"])] = len(clus)
     def get_stops(self):

@@ -7,7 +7,6 @@ from Create_Clusters import get_coords_from_adress
 import Create_Clusters
 
 def main():
-
     def coord_distance(one, two):
         one = one.split(",")
         two = two.split(",")
@@ -19,7 +18,6 @@ def main():
 
     def load_map(address_dictionary):
         Mit_Digraph = Digraph(get_coords_from_adress("899 Nebo Rd, Hannon, ON L0R 1P0"), get_coords_from_adress("700 Main St W, Hamilton, ON L8S 1A5"))
-
         keylist = address_dictionary.keys()
         for count, cluster in enumerate(address_dictionary.keys()):
             new_node_1 = Node(cluster)
@@ -67,8 +65,8 @@ def main():
                         temp_path[1] += edges.get_houses()/1/len(path)
                     temp_path[2] += 1
                     temp_path[3] += edges.get_total_time()
-                   # print(temp_path[1])
-                    if best_HTN == None or temp_path[1]>best_HTN and temp_path[2] in ((number_of_stations//number_of_busses)-1,  number_of_stations//number_of_busses,  (number_of_stations//number_of_busses)+1):
+                    #print(temp_path[1])
+                    if best_HTN == None or temp_path[1]>best_HTN and temp_path[2] in ((number_of_stations//number_of_busses)-1,  number_of_stations//number_of_busses,  (number_of_stations//number_of_busses)+2):
                         new_path = get_best_path(digraph, edges.get_destination(), end, max_time, number_of_stations, number_of_busses, temp_path, best_HTN, best_path)
                         if new_path != None:
                             best_path = copy.deepcopy(new_path)
@@ -86,7 +84,7 @@ def main():
     THELAWRDLYROUTES = []
     for bus in range(busnum):
         hi = get_best_path(lol, Node(str(newnode2[0])+','+str(newnode2[1])), Node(str(newmode3[0])+','+str(newmode3[1])), 40, number_of_busses= busnum-bus, number_of_stations=len(busstopppps.keys())+2)
-       # print(hi)
+        #print(hi)
         #print("hi")
         THELAWRDLYROUTES.append([x.tupleit() for x in hi[0]])
         for thing in hi[0]:
@@ -101,8 +99,23 @@ def main():
     for count, x in enumerate(THELAWRDLYROUTES):
         if count>0:
             for x in range(count):
-                if THELAWRDLYROUTES[count][0] == ('43.1692276', '-79.84532779999999'):
+                if THELAWRDLYROUTES[count][0] == ('43.2631153', '-79.8705335'):
                     THELAWRDLYROUTES[count].pop(0)
     return THELAWRDLYROUTES
-    #43.2631153, -79.8705335
-    #(43.2599949, -79.9011659)
+    #print(THELAWRDLYROUTES)
+
+def adress_to_route(adrss = "614, Waterloo, Street, Waterloo Street, Hamilton, City of Hamilton, Ontario, Canada, L8H 6V5"):
+    Clusters_object = Create_Clusters.run()
+    adrss_cluster = Clusters_object.clustermodel.predict([list(get_coords_from_adress(adrss))])
+    #print(adrss_cluster)
+    coors = Clusters_object.stopcoords[adrss_cluster[0]]
+    #print(coors)
+    temp = (str(coors["latitude"]), str(coors["longitude"]))
+    for x in main():
+        for y in x:
+            if y == temp:
+                return x
+
+#print("new, student, your route is:", adress_to_route())
+#43.2631153, -79.8705335
+#(43.2599949, -79.9011659)

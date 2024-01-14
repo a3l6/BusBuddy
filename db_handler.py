@@ -90,6 +90,16 @@ class db_handler:
             print("No user found")
             raise IncorrectCredentials("Incorrect Credentials")
 
+    @staticmethod
+    def get_address(email: str):
+        try:
+            cursor = session.query(User).filter(User.email == email)
+            for user in cursor:
+                return user.address
+            raise IncorrectCredentials("Incorrect Credentials")
+        except UnboundLocalError:       # No user found
+            print("No user found")
+            raise IncorrectCredentials("Incorrect Credentials")
         
 
 
