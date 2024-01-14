@@ -101,8 +101,47 @@ class db_handler:
             print("No user found")
             raise IncorrectCredentials("Incorrect Credentials")
         
+    @staticmethod
+    def get_school(email: str):
+        try:
+            cursor = session.query(User).filter(User.email == email)
+            for user in cursor:
+                return user.school
+            raise IncorrectCredentials("Incorrect Credentials")
+        except UnboundLocalError:       # No user found
+            print("No user found")
+            raise IncorrectCredentials("Incorrect Credentials")
 
+    @staticmethod
+    def get_name(email: str):
+        try:
+            cursor = session.query(User).filter(User.email == email)
+            for user in cursor:
+                return user.name
+            raise IncorrectCredentials("Incorrect Credentials")
+        except UnboundLocalError:       # No user found
+            print("No user found")
+            raise IncorrectCredentials("Incorrect Credentials")
 
+    def get_admin_name(email):
+        try:
+            cursor = session.query(Admin).filter(Admin.email == email)
+            for user in cursor:
+                return user.name
+            raise IncorrectCredentials("Incorrect Credentials")
+        except UnboundLocalError:       # No user found
+            print("No user found")
+            raise IncorrectCredentials("Incorrect Credentials")
+
+    def get_admin_school(email: str):
+        try:
+            cursor = session.query(Admin).filter(Admin.email == email)
+            for user in cursor:
+                return user.school
+            raise IncorrectCredentials("Incorrect Credentials")
+        except UnboundLocalError:       # No user found
+            print("No user found")
+            raise IncorrectCredentials("Incorrect Credentials")
 
 # Sqlalchemy boilerplate
 # Generating sqlalchemy stuff
