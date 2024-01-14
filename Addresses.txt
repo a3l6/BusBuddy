@@ -1,25 +1,47 @@
-119 Osler Dr, Dundas, ON L9H 6X4
-101 Osler Drive 108 A, ON L9H 4H4
-7 Don St, Dundas, ON L9H 4N8
-23 Dunning Ct, Dundas, ON L9H 4K8
-5 South Street E, Dundas, ON L9H 4K5
-41 South St W, Dundas, ON L9H 4C4
-94 Main St Unit 86, Dundas, ON L9H 2H1
-86 Main St, Dundas, ON L9H 2P9
-50 Hatt St, Dundas, ON L9H 0A1
-77 Governors Rd, Dundas, ON L9H 7N8
-50 Governors Road, Dundas, ON L9H 5M3
-56 Governors Rd, Dundas, ON L9H 5G7
-205B Governors Rd, Dundas, ON L9H 3J7
-14 Kemp Dr, Dundas, ON L9H 2M9
-14 Central Park Ave, Dundas, ON L9H 2M6
-297 Mill St, Dundas, ON L9H 2L8
-366 Mill St, Dundas, ON L9H 2M1
-424 MacNab St, Dundas, ON L9H 2L3
-1 Head St unit 5E, Dundas, ON L9H 3H5
-343 King St W, Dundas, ON L9H 1W8
-11 Woodlawn Ct, Hamilton, ON L9H 7S2
-15 Romar Dr, Dundas, ON L9H 5E2
-7 Westoby Ct, Dundas, ON L9H 7P9
-15 Parkway Pl, Dundas, ON L9H 6K3
-548 Old Dundas Rd, Ancaster, ON L9G 3J4
+('93, Brian, Boulevard, Brian Boulevard, Flamborough, City of Hamilton, Ontario, Canada, L8B 0C8',)
+('248, Pinehill, Drive, Pinehill Drive, Glanbrook, City of Hamilton, Ontario, Canada, L0R 1P0',)
+('117, Marion, Street, Marion Street, Glanbrook, City of Hamilton, Ontario, Canada, L0R 1W0',)
+('30, Fair, Street, Fair Street, Ancaster, City of Hamilton, Ontario, Canada, L9K 0A6',)
+('33, Seabrooke, Drive, Seabrooke Drive, Hamilton, City of Hamilton, Ontario, Canada, L8E 1N3',)
+('181, Briar Hill, Crescent, Briar Hill Crescent, Ancaster, City of Hamilton, Ontario, Canada, L9G 3P5',)
+('38, Glenvale, Drive, Glenvale Drive, Hamilton, City of Hamilton, Ontario, Canada, L9C 2X6',)
+('12, Ackland, Street, Ackland Street, Stoney Creek, City of Hamilton, Ontario, Canada, L8J 1H7',)
+('350, East 18th, Street, East 18th Street, Hamilton, City of Hamilton, Ontario, Canada, L9A 4P9',)
+('129, Glen Castle, Drive, Glen Castle Drive, Hamilton, City of Hamilton, Ontario, Canada, L8K 5Z7',)
+('5, Cortina, Crescent, Cortina Crescent, Hamilton, City of Hamilton, Ontario, Canada, L8K 4K3',)
+('49, Upper Walker, Avenue, Upper Walker Avenue, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 1S9',)
+('5, Brae Crest, Drive, Brae Crest Drive, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 3A5',)
+("77, 601, Governor's, Road, Governor's Road, Dundas, City of Hamilton, Ontario, Canada, L9H 7N8",)
+('26, Galaxy, Boulevard, Galaxy Boulevard, Flamborough, City of Hamilton, Ontario, Canada, L8B 0Z7',)
+('376, Avondale, Street, Avondale Street, Hamilton, City of Hamilton, Ontario, Canada, L8L 7C6',)
+('566, 52, Southridge, Drive, Southridge Drive, Hamilton, City of Hamilton, Ontario, Canada, L9C 7W5',)
+('22, West Park, Avenue, West Park Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8S 3M3',)
+('63, Kendrick, Court, Kendrick Court, Ancaster, City of Hamilton, Ontario, Canada, L9G 5A5',)
+('254, Jacqueline, Boulevard, Jacqueline Boulevard, Hamilton, City of Hamilton, Ontario, Canada, L9B 2V7',)
+('23, Grande, Avenue, Grande Avenue, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 2C9',)
+('12, Cresthaven, Drive, Cresthaven Drive, Stoney Creek, City of Hamilton, Ontario, Canada, L8E 4S4',)
+('23, Newton, Avenue, Newton Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8S 1V6',)
+('43, Camp, Drive, Camp Drive, Ancaster, City of Hamilton, Ontario, Canada, L9K 0A5',)
+('82, Meadow Wood, Crescent, Meadow Wood Crescent, Stoney Creek, City of Hamilton, Ontario, Canada, L8J 3Z8',)
+('53, Candlewood, Court, Candlewood Court, Stoney Creek, City of Hamilton, Ontario, Canada, L8J 0C4',)
+('42, Fairview, Avenue, Fairview Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8L 7B4',)
+('552, Main, Street, East, Main Street East, Hamilton, City of Hamilton, Ontario, Canada, L8M 1J1',)
+('105, Chamomile, Drive, Chamomile Drive, Hamilton, City of Hamilton, Ontario, Canada, L8W 0B9',)
+('67, Hawkswood, Trail, Hawkswood Trail, Hamilton, City of Hamilton, Ontario, Canada, L9B 2R4',)
+('250, San Francisco, Avenue, San Francisco Avenue, Hamilton, City of Hamilton, Ontario, Canada, L9C 5N9',)
+('87, Folkestone, Avenue, Folkestone Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8V 4N1',)
+('175, Rosslyn, Avenue, South, Rosslyn Avenue South, Hamilton, City of Hamilton, Ontario, Canada, L8M 3J4',)
+('157, Fairfield, Avenue, Fairfield Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8H 5H3',)
+('44, James, Avenue, James Avenue, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 3K4',)
+('2058, Barton, Street, East, Barton Street East, Hamilton, City of Hamilton, Ontario, Canada, L8H 2Z4',)
+('2, King, Street, East, King Street East, Dundas, City of Hamilton, Ontario, Canada, L9H 1B8',)
+('380, Highland, Road, West, Highland Road West, Stoney Creek, City of Hamilton, Ontario, Canada, L8J 3W3',)
+('345, Jacqueline, Boulevard, Jacqueline Boulevard, Hamilton, City of Hamilton, Ontario, Canada, L9B 2W6',)
+('215, Glencairn, Avenue, Glencairn Avenue, Hamilton, City of Hamilton, Ontario, Canada, L8K 3P1',)
+('51, Dydzak, Court, Dydzak Court, Hamilton, City of Hamilton, Ontario, Canada, L9B 1W1',)
+('68, Hepburn, Crescent, Hepburn Crescent, Hamilton, City of Hamilton, Ontario, Canada, L9C 7S5',)
+('268, Hunter, Street, West, Hunter Street West, Hamilton, City of Hamilton, Ontario, Canada, L8P 1S3',)
+('110, Hanover, Place, Hanover Place, Hamilton, City of Hamilton, Ontario, Canada, L8K 5X6',)
+('49, Upper Lake, Avenue, Upper Lake Avenue, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 2V3',)
+('58, Orr, Crescent, Orr Crescent, Stoney Creek, City of Hamilton, Ontario, Canada, L8G 5C5',)
+('692, Concession 8, West, Concession 8 West, Flamborough, City of Hamilton, Ontario, Canada, N0B 2J0',)

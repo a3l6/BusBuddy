@@ -22,7 +22,7 @@ def get_routes() -> list[str]:
 
     for i in x:
         print(i)
-        lists.append(list(map(lambda y: y.address.replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), i)))))
+        lists.append(list(map(lambda y: y.address.replace("+", "%2B").replace(" ", "+"),list(map(lambda x: loc.reverse(f"{x[0]}, {x[1]}"), i)))))
 
 
     urls = []

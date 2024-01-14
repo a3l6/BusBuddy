@@ -73,7 +73,7 @@ def register():
 
         # After registering, return to login page if successful or return to register if user already exists
         if registerSuccess and (not checkAdminAcc):
-            return render_template("login.html")
+            return redirect(url_for("login"))
         
         # WIP: implement boolean var pass/flash error message
         return render_template("register_student.html")
@@ -100,7 +100,7 @@ def admin_register():
 
         # After registering, return to login page if successful or return to register if user already exists
         if registerSuccess and (not checkStudentAcc):
-            return render_template("login.html")
+            return redirect(url_for("login"))
         
         # WIP: implement boolean var pass/flash error message
         session["name"] = name
@@ -287,11 +287,29 @@ def generate_fake_data():
 
 def generate_routes():
     global routes
+
+    # Create new routes
+
+    all_addrs = dh.get_addrs()
+    with open(r"./Addresses.txt", "w+") as f:
+        for addr in all_addrs:
+            f.write(f"{addr}\n")
+
+
     r = rh.get_routes()
     routes = r
 
 def generate_maps():
     global routes
+    
+    t = []
+    for route in routes:
+        temp = route.replace("899+Nebo+Rd,+Hannon,+ON+L0R+1P0,+Canada/", "")
+        x = temp[:32] + "899+Nebo+Rd,+Hannon,+ON+L0R+1P0,+Canada/" + temp[32:]
+        t.append(x)
+    routes = t
+
+    print(routes)
 
     for route in routes:
         with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) as driver: 
@@ -302,7 +320,7 @@ def generate_maps():
             actions = ActionChains(driver)
             actions.move_to_element(specific_element).perform()
             # Take a screenshot of just the located element and save it to a file
-            driver.implicitly_wait(.6)
+            driver.implicitly_wait(.719)
             specific_element.screenshot(f'static/vendor/maps/route{routes.index(route) + 1}.png')
         
         
